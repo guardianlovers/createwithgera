@@ -53,15 +53,16 @@
 
   /* RESUME HERO */
   .resume-hero{padding:150px 0 76px;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%);border-bottom:1px solid var(--line)}
+  .resume-hero-grid{display:grid;grid-template-columns:1fr 280px;gap:56px;align-items:center}
+  .resume-photo{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--off)}
+  .resume-photo img{width:100%;height:100%;object-fit:cover;display:block}
   .resume-eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
-  .resume-name{font-family:var(--hand);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:10px}
-  .resume-fullname{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--grey-mute);margin-bottom:16px}
+  .resume-name{font-family:var(--hand);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.05;letter-spacing:0;color:var(--black);margin-bottom:16px}
   .resume-role{font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:8px}
   .resume-location{font-size:14.5px;color:var(--grey);margin-bottom:26px}
-  .resume-contact{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+  .resume-contact{display:flex;flex-wrap:wrap;gap:10px}
   .resume-contact a,.resume-contact span{font-size:14px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--line);padding:8px 16px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;transition:border-color .2s,transform .2s}
   .resume-contact a:hover{border-color:var(--ink);transform:translateY(-2px)}
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 
   /* SUMMARY + SKILLS */
   .resume-summary{font-size:1.05rem;color:var(--grey);line-height:1.6;max-width:720px;margin-bottom:36px}
@@ -81,6 +82,10 @@
   .exp-body li{font-size:14.5px;color:var(--grey);line-height:1.55;display:flex;gap:10px}
   .exp-body li::before{content:'—';color:var(--accent);flex-shrink:0}
 
+  @media(max-width:760px){
+    .resume-hero-grid{grid-template-columns:1fr;gap:32px}
+    .resume-photo{max-width:220px;order:-1}
+  }
   @media(max-width:640px){
     .wrap{padding:0 24px}
     .nav-links{display:none}.menu-btn{display:block}
@@ -121,21 +126,21 @@
 </nav>
 
 <header class="resume-hero">
-  <div class="wrap">
-    <p class="resume-eyebrow reveal">Resume</p>
-    <h1 class="resume-name reveal">Gera Guerrero</h1>
-    <p class="resume-fullname reveal">Geraldine Pimentel Guerrero</p>
-    <p class="resume-role reveal">UI/UX Designer · Product Designer · E-commerce UX</p>
-    <p class="resume-location reveal">Baler, Aurora, Philippines</p>
-    <div class="resume-contact reveal">
-      <a href="mailto:guerreroghen@gmail.com">guerreroghen@gmail.com</a>
-      <a href="tel:+639701856532">0970-1856-532</a>
-      <a href="https://linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://guardianlovers.space" target="_blank" rel="noopener">guardianlovers.space</a>
+  <div class="wrap resume-hero-grid">
+    <div>
+      <p class="resume-eyebrow reveal">Resume</p>
+      <h1 class="resume-name reveal">Geraldine Pimentel Guerrero</h1>
+      <p class="resume-role reveal">UI/UX Designer · Product Designer · E-commerce UX</p>
+      <p class="resume-location reveal">Baler, Aurora, Philippines</p>
+      <div class="resume-contact reveal">
+        <a href="mailto:guerreroghen@gmail.com">guerreroghen@gmail.com</a>
+        <a href="tel:+639701856532">0970-1856-532</a>
+        <a href="https://linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://guardianlovers.space" target="_blank" rel="noopener">guardianlovers.space</a>
+      </div>
     </div>
-    <div class="hero-ctas reveal">
-      <a href="index.html#contact" class="btn btn-primary">Work with me</a>
-      <a href="index.html#top" class="btn btn-outline">← Back to portfolio</a>
+    <div class="resume-photo reveal">
+      <img src="assets/about-me/gera.png" alt="Portrait of Geraldine Guerrero">
     </div>
   </div>
 </header>
