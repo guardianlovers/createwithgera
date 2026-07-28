@@ -166,7 +166,9 @@
   .ccard{scroll-snap-align:start;flex:0 0 300px;display:block;color:inherit;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--white);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .ccard:hover{transform:translateY(-5px);box-shadow:0 26px 56px rgba(0,0,0,.09)}
   .ccard-top{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--white)}
-  .ccard-index{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--grey-mute);z-index:2}
+  .ccard-top img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .4s var(--ease)}
+  .ccard:hover .ccard-top img{transform:scale(1.04)}
+  .ccard-index{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink);background:rgba(255,255,255,.88);padding:4px 9px;border-radius:100px;z-index:2}
   .ccard-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);color:#fff;padding:5px 11px;border-radius:100px}
   .cmock{width:76%;background:#fff;border:1px solid var(--line);border-radius:12px 12px 0 0;box-shadow:0 16px 32px rgba(0,0,0,.1);padding:15px;transform:translateY(24px)}
   .cmock .cb{display:flex;gap:5px;margin-bottom:12px}
@@ -364,7 +366,7 @@
         <div class="work-viewport" id="workViewport">
           <div class="carousel" id="carousel" tabindex="0" aria-label="Project carousel">
       <div class="ccard static">
-        <div class="ccard-top" style="background:var(--black)"><span class="ccard-index" style="color:#fff">01 / 05</span><span class="ccard-badge">Case study</span><div class="cmock"><div class="cb"><i></i><i></i><i></i></div><div class="cl a"></div><div class="cl b"></div><div class="cl c"></div></div></div>
+        <div class="ccard-top"><span class="ccard-index">01 / 05</span><span class="ccard-badge">Case study</span><img src="assets/selected-projects/ourspace.png" alt="OurSpace product screenshot" loading="lazy"></div>
         <div class="ccard-body">
           <h3>OurSpace</h3>
           <p>A private writing studio for Filipino fiction writers — six tools in one place, replacing five scattered apps.</p>
@@ -376,7 +378,7 @@
         </div>
       </div>
       <div class="ccard static">
-        <div class="ccard-top"><span class="ccard-index">02 / 05</span><div class="cmock"><div class="cb"><i></i><i></i><i></i></div><div class="cl a"></div><div class="cl b"></div><div class="cl c"></div></div></div>
+        <div class="ccard-top"><span class="ccard-index">02 / 05</span><img src="assets/selected-projects/sikat-aurora.png" alt="Síkat-Aurora Inc. website screenshot" loading="lazy"></div>
         <div class="ccard-body">
           <h3>Síkat-Aurora Inc.</h3>
           <p>A youth nonprofit site in Baler, Aurora, structured around three clear paths: volunteer, donate, sponsor.</p>
@@ -387,7 +389,7 @@
         </div>
       </div>
       <div class="ccard static">
-        <div class="ccard-top"><span class="ccard-index">03 / 05</span><div class="cmock"><div class="cb"><i></i><i></i><i></i></div><div class="cl a"></div><div class="cl b"></div><div class="cl c"></div></div></div>
+        <div class="ccard-top"><span class="ccard-index">03 / 05</span><img src="assets/selected-projects/learnwithaaya.png" alt="Learn with Teacher Aiah landing page screenshot" loading="lazy"></div>
         <div class="ccard-body">
           <h3>Learn with Teacher Aiah</h3>
           <p>A tutor landing page rebuilt around a single, clear inquiry action — from interested to booked.</p>
@@ -398,7 +400,7 @@
         </div>
       </div>
       <div class="ccard static">
-        <div class="ccard-top"><span class="ccard-index">04 / 05</span><div class="cmock"><div class="cb"><i></i><i></i><i></i></div><div class="cl a"></div><div class="cl b"></div><div class="cl c"></div></div></div>
+        <div class="ccard-top"><span class="ccard-index">04 / 05</span><img src="assets/selected-projects/abenson-apple-store.png" alt="Abenson Apple Store page screenshot" loading="lazy"></div>
         <div class="ccard-body">
           <h3>Abenson — Apple Store</h3>
           <p>A brand storefront for a major PH retailer. I shaped the product hierarchy so a large catalog feels curated.</p>
