@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gera Guerrero — Resume</title>
+<meta name="description" content="Resume — Geraldine 'Gera' Guerrero, UI/UX Designer & Product Builder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000;--ink:#111111;--grey:#666666;--grey-2:#999999;--grey-mute:#6E6E6E;
+    --line:#E6E6E6;--line-2:#F0F0F0;--white:#FFFFFF;--off:#F7F7F7;
+    --accent:#B83D24;--accent-bright:#E15235;--accent-ink:#A83620;--accent-wash:#FBEAE4;
+    --sans:'Nunito',-apple-system,system-ui,sans-serif;--hand:'Caveat',cursive;--mono:'JetBrains Mono',monospace;
+    --ease:cubic-bezier(.22,.7,.28,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--white);color:var(--ink);line-height:1.5;font-size:17px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;overflow-x:hidden}
+  ::selection{background:var(--ink);color:var(--white)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:200;transition:width .1s linear}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line-2)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .logo{font-family:var(--hand);font-size:24px;font-weight:700;letter-spacing:0;color:var(--ink)}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:400;color:var(--ink);opacity:.72;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1}
+  .nav-cta{font-size:14px;font-weight:500;background:var(--ink);color:var(--white)!important;padding:8px 17px;border-radius:100px;opacity:1!important;transition:transform .2s}
+  .nav-cta:hover{transform:scale(1.04)}
+  .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
+
+  .btn{font-size:16px;font-weight:500;padding:13px 27px;border-radius:100px;transition:transform .2s var(--ease),background .2s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:7px}
+  .btn-primary{background:var(--ink);color:var(--white)}
+  .btn-primary:hover{transform:scale(1.03)}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--white);transform:scale(1.03)}
+
+  section{padding:110px 0}
+  .sec-head{margin-bottom:60px;max-width:640px}
+  .sec-num{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin-bottom:16px;display:block}
+  .sec-title{font-family:var(--hand);font-size:clamp(3rem,6vw,4.8rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:16px}
+  .sec-intro{font-size:1.2rem;color:var(--grey);line-height:1.42}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* RESUME HERO */
+  .resume-hero{padding:150px 0 76px;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%);border-bottom:1px solid var(--line)}
+  .resume-eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
+  .resume-name{font-family:var(--hand);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:10px}
+  .resume-fullname{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--grey-mute);margin-bottom:16px}
+  .resume-role{font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+  .resume-location{font-size:14.5px;color:var(--grey);margin-bottom:26px}
+  .resume-contact{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+  .resume-contact a,.resume-contact span{font-size:14px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--line);padding:8px 16px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;transition:border-color .2s,transform .2s}
+  .resume-contact a:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+  /* SUMMARY + SKILLS */
+  .resume-summary{font-size:1.05rem;color:var(--grey);line-height:1.6;max-width:720px;margin-bottom:36px}
+  .skills-wrap{display:flex;flex-wrap:wrap;gap:10px}
+  .skill-chip{font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:100px;background:var(--off);border:1px solid var(--line);color:var(--ink)}
+
+  /* EXPERIENCE / EDUCATION */
+  #experience{background:var(--off);border-bottom:1px solid var(--line)}
+  .timeline{display:flex;flex-direction:column}
+  .exp{display:grid;grid-template-columns:180px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--line)}
+  .exp:first-child{padding-top:0}
+  .exp:last-child{border-bottom:none;padding-bottom:0}
+  .exp-date{font-family:var(--mono);font-size:12.5px;color:var(--grey-mute);letter-spacing:.02em;padding-top:4px}
+  .exp-body h3{font-family:var(--sans);font-size:1.25rem;font-weight:700;color:var(--black);margin-bottom:4px;letter-spacing:-.02em}
+  .exp-company{font-size:14.5px;font-weight:600;color:var(--accent-ink);margin-bottom:14px}
+  .exp-body ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .exp-body li{font-size:14.5px;color:var(--grey);line-height:1.55;display:flex;gap:10px}
+  .exp-body li::before{content:'—';color:var(--accent);flex-shrink:0}
+
+  @media(max-width:640px){
+    .wrap{padding:0 24px}
+    .nav-links{display:none}.menu-btn{display:block}
+    section{padding:80px 0}.resume-hero{padding:96px 0 56px}
+    .exp{grid-template-columns:1fr;gap:8px}
+  }
+
+  footer{background:#A83620;color:#fff;padding:72px 0 32px;overflow:hidden}
+  .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.22)}
+  .foot-brand{max-width:340px}
+  .foot-brand .logo{margin-bottom:14px;display:inline-block;color:#fff}
+  .foot-brand p{font-size:14px;color:rgba(255,255,255,.82);line-height:1.55}
+  .foot-links{display:flex;gap:64px}
+  .foot-col h5{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px}
+  .foot-col a{display:block;font-size:14px;color:#fff;opacity:.88;margin-bottom:11px;transition:opacity .2s}
+  .foot-col a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+  .foot-wordmark{font-family:var(--sans);font-weight:800;font-size:clamp(2.25rem,11.5vw,13rem);line-height:.9;letter-spacing:-.04em;text-transform:none;color:#fff;text-align:center;white-space:nowrap;margin:56px 0 24px;user-select:none}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);font-size:13px;color:rgba(255,255,255,.82);flex-wrap:wrap;gap:10px}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="index.html#top" class="logo">Gera Guerrero</a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#services">Services</a>
+      <a href="resume.html" class="active">Resume</a>
+      <a href="index.html#contact" class="nav-cta">Work with me</a>
+    </div>
+    <button class="menu-btn">☰</button>
+  </div>
+</nav>
+
+<header class="resume-hero">
+  <div class="wrap">
+    <p class="resume-eyebrow reveal">Resume</p>
+    <h1 class="resume-name reveal">Gera Guerrero</h1>
+    <p class="resume-fullname reveal">Geraldine Pimentel Guerrero</p>
+    <p class="resume-role reveal">UI/UX Designer · Product Designer · E-commerce UX</p>
+    <p class="resume-location reveal">Baler, Aurora, Philippines</p>
+    <div class="resume-contact reveal">
+      <a href="mailto:guerreroghen@gmail.com">guerreroghen@gmail.com</a>
+      <a href="tel:+639701856532">0970-1856-532</a>
+      <a href="https://linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://guardianlovers.space" target="_blank" rel="noopener">guardianlovers.space</a>
+    </div>
+    <div class="hero-ctas reveal">
+      <a href="index.html#contact" class="btn btn-primary">Work with me</a>
+      <a href="index.html#top" class="btn btn-outline">← Back to portfolio</a>
+    </div>
+  </div>
+</header>
+
+<!-- SUMMARY & SKILLS -->
+<section id="summary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">Summary</span>
+      <p class="resume-summary">Experience spans e-commerce, PWA, automation, and community product design. Proficiencies include Figma prototyping, user flows, UX documentation, and conversion-focused interface work.</p>
+    </div>
+    <div class="skills-wrap reveal">
+      <span class="skill-chip">UI/UX Design</span>
+      <span class="skill-chip">Product Design</span>
+      <span class="skill-chip">Wireframing</span>
+      <span class="skill-chip">Prototyping</span>
+      <span class="skill-chip">User Flows</span>
+      <span class="skill-chip">Design Systems</span>
+      <span class="skill-chip">UX Documentation</span>
+      <span class="skill-chip">Developer Handoff</span>
+      <span class="skill-chip">E-commerce UX</span>
+      <span class="skill-chip">PWA Design</span>
+      <span class="skill-chip">Conversion Optimization</span>
+      <span class="skill-chip">Content Strategy</span>
+      <span class="skill-chip">Visual Design</span>
+      <span class="skill-chip">Customer Experience</span>
+      <span class="skill-chip">Figma</span>
+      <span class="skill-chip">Adobe Creative Cloud</span>
+      <span class="skill-chip">Canva</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">Experience</span>
+      <h2 class="sec-title">Where I've worked.</h2>
+    </div>
+    <div class="timeline">
+      <div class="exp reveal">
+        <div class="exp-date">Sep 2024 — Present</div>
+        <div class="exp-body">
+          <h3>UI/UX Designer</h3>
+          <p class="exp-company">Abenson Ventures Inc.</p>
+          <ul>
+            <li>End-to-end UX/UI design for retail, e-commerce, and PWA projects</li>
+            <li>Led design initiatives including Google Review Automation and PWA redesigns</li>
+            <li>Enhanced customer-facing pages and product discovery flows</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp reveal">
+        <div class="exp-date">2026 — Present</div>
+        <div class="exp-body">
+          <h3>Product Designer</h3>
+          <p class="exp-company">OurSpace / ourwriting.space</p>
+          <ul>
+            <li>Founded a writer-focused productivity platform</li>
+            <li>Owned product strategy, UX flows, and community feedback processes</li>
+            <li>Achieved 1,000+ users within the first month</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp reveal">
+        <div class="exp-date">Jun 2024 — Jun 2026</div>
+        <div class="exp-body">
+          <h3>E-commerce Manager</h3>
+          <p class="exp-company">Brave Minds Community</p>
+          <ul>
+            <li>Managed a niche e-commerce brand reaching 1,260+ sales</li>
+            <li>Designed storefront layouts and marketplace strategy</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp reveal">
+        <div class="exp-date">Apr 2024 — Aug 2024</div>
+        <div class="exp-body">
+          <h3>Multimedia Designer</h3>
+          <p class="exp-company">Twin Success Merchandizing</p>
+          <ul>
+            <li>Created campaign assets and promotional graphics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">Education</span>
+      <h2 class="sec-title">Where I studied.</h2>
+    </div>
+    <div class="timeline">
+      <div class="exp reveal">
+        <div class="exp-date">2019 — 2023</div>
+        <div class="exp-body">
+          <h3>Bachelor of Science in Information Technology</h3>
+          <p class="exp-company">Aurora State College of Technology</p>
+        </div>
+      </div>
+      <div class="exp reveal">
+        <div class="exp-date">2016 — 2018</div>
+        <div class="exp-body">
+          <h3>Accountancy, Business and Management</h3>
+          <p class="exp-company">Aurora State College of Technology</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a href="index.html#top" class="logo">Gera Guerrero</a><p>UX/UI Designer & Product Builder. Designing websites, dashboards, and digital products for founders and growing teams.</p></div>
+      <div class="foot-links">
+        <div class="foot-col"><h5>Navigate</h5><a href="index.html#about">About</a><a href="index.html#work">Work</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a></div>
+        <div class="foot-col"><h5>Elsewhere</h5><a href="resume.html">Resume</a><a href="#">Blog</a><a href="https://linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a><a href="#">Behance</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-wordmark" aria-hidden="true">Create with Gera</div>
+  <div class="wrap">
+    <div class="foot-bottom"><span>© 2026 Gera Guerrero. All rights reserved.</span><span>Designed &amp; built by Gera</span></div>
+  </div>
+</footer>
+
+<script>
+  const prog=document.getElementById('progress');
+  const onScroll=()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%'};
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el)});
+</script>
+</body>
+</html>
