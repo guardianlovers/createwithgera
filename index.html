@@ -185,7 +185,10 @@
   .ccard:hover .go{gap:10px}
 
   /* SERVICES */
-  .services{background:var(--white);border-bottom:1px solid var(--line)}
+  .services{background:var(--accent-ink);border-bottom:1px solid var(--line);color:var(--white)}
+  .services .sec-num{color:rgba(255,255,255,.85)}
+  .services .sec-title{color:var(--white)}
+  .services .sec-intro{color:rgba(255,255,255,.78)}
   .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
   .svc{position:relative;display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:36px 32px 34px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .svc:hover{transform:translateY(-4px);box-shadow:0 24px 50px -26px rgba(17,17,17,.18)}
@@ -253,7 +256,7 @@
   .foot-col h5{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px}
   .foot-col a{display:block;font-size:14px;color:#fff;opacity:.88;margin-bottom:11px;transition:opacity .2s}
   .foot-col a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
-  .foot-wordmark{font-family:var(--sans);font-weight:800;font-size:clamp(3.5rem,17vw,15rem);line-height:.9;letter-spacing:-.04em;text-transform:none;color:#fff;text-align:center;white-space:nowrap;margin:56px 0 24px;user-select:none}
+  .foot-wordmark{font-family:var(--sans);font-weight:800;font-size:clamp(2.25rem,11.5vw,13rem);line-height:.9;letter-spacing:-.04em;text-transform:none;color:#fff;text-align:center;white-space:nowrap;margin:56px 0 24px;user-select:none}
   .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);font-size:13px;color:rgba(255,255,255,.82);flex-wrap:wrap;gap:10px}
 
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
@@ -316,7 +319,7 @@
       <div class="about-photo empty reveal">
         <!-- STEP 1: put your photo file next to this HTML (e.g. a folder "images/").
              STEP 2: set the src below to its path, e.g. src="images/gera.jpg" -->
-        <img src="" alt="Portrait of Gera"
+        <img src="assets/about-me/gera.png" alt="Portrait of Gera"
              onload="if(this.getAttribute('src')){this.parentNode.classList.remove('empty')}"
              onerror="this.parentNode.classList.add('empty')">
         <span class="photo-hint">
