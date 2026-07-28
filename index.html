@@ -153,7 +153,7 @@
   .work-sticky .wrap{width:100%}
   .pinned .work-head{margin-bottom:48px;max-width:1080px;margin-left:auto;margin-right:auto;padding:0 40px}
   .work-viewport{overflow:hidden;padding:6px 0 2px}.pinned .work-viewport{width:100vw;margin-left:calc(50% - 50vw);padding:6px 0 2px}
-  .pinned .carousel{overflow:visible;transition:none;scroll-snap-type:none;will-change:transform;padding:0;margin:0}.pinned .carousel::after{content:'';flex:0 0 24px}
+  .pinned .carousel{overflow:visible;transition:none;scroll-snap-type:none;will-change:transform;padding-left:calc(40px + max(0px,(100vw - 1080px)/2));margin:0}.pinned .carousel::after{content:'';flex:0 0 24px}
   .pinned .carousel.dragging{cursor:grab}
   .scroll-track-hint{display:flex;align-items:center;gap:10px;margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-mute)}
   .scroll-track-hint .bar{flex:1;height:3px;border-radius:100px;background:var(--line);overflow:hidden;max-width:220px}
@@ -162,7 +162,7 @@
   .pinned.nofx .work-viewport{overflow-x:auto;scrollbar-width:none;width:auto;margin-left:0;padding:6px 40px 2px}
   .pinned.nofx .work-viewport::-webkit-scrollbar{display:none}
   .pinned.nofx .carousel{transform:none!important}
-  @media(max-width:760px){.pinned .work-sticky{position:static;height:auto;padding:80px 0}.pinned .work-viewport{overflow-x:auto;width:auto;margin-left:0;padding:6px 24px 2px}.pinned .work-head{padding:0 24px}.pinned .carousel{transform:none!important;gap:22px}.pinned .carousel::after{display:none}.scroll-track-hint{display:none}}
+  @media(max-width:760px){.pinned .work-sticky{position:static;height:auto;padding:80px 0}.pinned .work-viewport{overflow-x:auto;width:auto;margin-left:0;padding:6px 24px 2px}.pinned .work-head{padding:0 24px}.pinned .carousel{transform:none!important;gap:22px;padding-left:0}.pinned .carousel::after{display:none}.scroll-track-hint{display:none}}
   .ccard{scroll-snap-align:start;flex:0 0 380px;display:block;color:inherit;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--white);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .ccard:hover{transform:translateY(-5px);box-shadow:0 26px 56px rgba(0,0,0,.09)}
   .ccard-top{height:186px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--white)}
