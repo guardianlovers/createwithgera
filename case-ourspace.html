@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OurSpace — Case Study | Gera Guerrero</title>
+<meta name="description" content="Case study: OurSpace, a private writing platform for Filipino fiction writers. Problem, objective, research, and solution.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Dreamy Notes Sans';src:url("assets/font/Dreamy Notes Sans.otf") format('opentype');font-weight:400 700;font-style:normal;font-display:swap}
+  :root{
+    --black:#000000;--ink:#111111;--grey:#666666;--grey-2:#999999;--grey-mute:#6E6E6E;
+    --line:#E6E6E6;--line-2:#F0F0F0;--white:#FFFFFF;--off:#F7F7F7;
+    --accent:#B83D24;--accent-bright:#E15235;--accent-ink:#A83620;--accent-wash:#FBEAE4;
+    --sans:'Nunito',-apple-system,system-ui,sans-serif;--hand:'Dreamy Notes Sans','Caveat',cursive;--mono:'JetBrains Mono',monospace;
+    --ease:cubic-bezier(.22,.7,.28,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--white);color:var(--ink);line-height:1.5;font-size:17px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;overflow-x:hidden}
+  ::selection{background:var(--ink);color:var(--white)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:800px;margin:0 auto;padding:0 40px}
+
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:200;transition:width .1s linear}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line-2)}
+  .nav-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .logo{font-family:var(--hand);font-size:24px;font-weight:700;letter-spacing:0;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+  .logo-mark{width:26px;height:26px;display:block;flex-shrink:0}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:400;color:var(--ink);opacity:.72;transition:opacity .2s}
+  .nav-links a:hover{opacity:1}
+  .nav-cta{font-size:14px;font-weight:500;background:var(--accent-ink);color:var(--white)!important;padding:8px 17px;border-radius:100px;opacity:1!important;transition:transform .2s,background .2s}
+  .nav-cta:hover{background:var(--accent)}
+  .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
+
+  .btn{font-size:16px;font-weight:500;padding:13px 27px;border-radius:100px;transition:transform .2s var(--ease),background .2s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:7px}
+  .btn-primary{background:var(--ink);color:var(--white)}
+  .btn-primary:hover{transform:scale(1.03)}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--white);transform:scale(1.03)}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  .case-hero{padding:150px 0 0;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%)}
+  .case-hero .wrap{max-width:1080px}
+  .case-eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
+  .case-title{font-family:var(--hand);font-size:clamp(2.6rem,6vw,4.5rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:16px}
+  .case-sub{font-size:1.15rem;color:var(--grey);max-width:640px;line-height:1.5;margin-bottom:28px}
+  .case-links{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+  .case-cta{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;padding:11px 20px;border-radius:100px;border:1px solid var(--ink);transition:transform .2s var(--ease),background .2s,color .2s}
+  .case-cta.primary{background:var(--ink);color:#fff}
+  .case-cta.primary:hover{transform:translateY(-2px)}
+  .case-cta.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .case-cta.ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .case-hero-img{width:100%;border-radius:16px 16px 0 0;overflow:hidden;border:1px solid var(--line);border-bottom:none}
+  .case-hero-img img{width:100%;display:block}
+
+  .case-body{padding:64px 0 110px}
+  .case-section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .case-section:last-child{border-bottom:none;padding-bottom:0}
+  .case-num{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block}
+  .case-section h2{font-family:var(--sans);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;color:var(--black);margin-bottom:18px}
+  .case-section p{font-size:16px;color:var(--grey);line-height:1.65;margin-bottom:16px}
+  .case-section ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin:16px 0}
+  .case-section li{font-size:16px;color:var(--grey);line-height:1.55;display:flex;gap:10px;padding-left:2px}
+  .case-section li::before{content:'—';color:var(--accent);flex-shrink:0}
+  .case-principles{font-family:var(--hand);font-size:1.6rem;color:var(--black);line-height:1.4;margin:18px 0}
+  .case-stat{background:var(--off);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:20px}
+  .case-stat p{color:var(--ink);font-weight:600;margin-bottom:0}
+
+  @media(max-width:640px){
+    .wrap{padding:0 24px}
+    .nav-inner{padding:0 24px}
+    .nav-links{display:none}.menu-btn{display:block}
+    .case-hero{padding:96px 0 0}
+    .case-body{padding:48px 0 80px}
+    .case-section{padding:36px 0}
+  }
+
+  footer{background:#A83620;color:#fff;padding:72px 0 32px;overflow:hidden}
+  .foot-grid{max-width:1080px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.22)}
+  .foot-brand{max-width:340px}
+  .foot-brand .logo{margin-bottom:14px;color:#fff}
+  .foot-brand .logo-mark{filter:brightness(0) invert(1)}
+  .foot-brand p{font-size:14px;color:rgba(255,255,255,.82);line-height:1.55}
+  .foot-links{display:flex;gap:64px}
+  .foot-col h5{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px}
+  .foot-col a{display:block;font-size:14px;color:#fff;opacity:.88;margin-bottom:11px;transition:opacity .2s}
+  .foot-col a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+  .foot-wordmark{font-family:var(--sans);font-weight:800;font-size:clamp(2.25rem,11.5vw,13rem);line-height:.9;letter-spacing:-.04em;text-transform:none;color:#fff;text-align:center;white-space:nowrap;margin:56px 0 24px;user-select:none}
+  .foot-bottom{max-width:1080px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);font-size:13px;color:rgba(255,255,255,.82);flex-wrap:wrap;gap:10px}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Create with Gera</a>
+    <div class="nav-links">
+      <a href="projects.html">← All Projects</a>
+      <a href="resume.html">Resume</a>
+      <a href="index.html#contact" class="nav-cta">Create with Me</a>
+    </div>
+    <button class="menu-btn">☰</button>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <p class="case-eyebrow reveal">Case Study</p>
+    <h1 class="case-title reveal">OurSpace</h1>
+    <p class="case-sub reveal">A private writing platform for Filipino fiction writers — built around progress, not performance.</p>
+    <div class="case-links reveal">
+      <a href="https://ourwriting.space/" target="_blank" rel="noopener" class="case-cta primary">Live website</a>
+      <a href="projects.html" class="case-cta ghost">← All projects</a>
+    </div>
+  </div>
+  <div class="wrap" style="max-width:1080px">
+    <div class="case-hero-img reveal"><img src="assets/selected-projects/ourspace.png" alt="OurSpace product screenshot"></div>
+  </div>
+</header>
+
+<div class="case-body">
+  <div class="wrap">
+
+    <section class="case-section reveal">
+      <span class="case-num">01 — Problem</span>
+      <h2>Writing under pressure to perform</h2>
+      <p>Most writing platforms are built around publishing, reads, rankings, and visibility. This creates pressure for writers who are still developing their stories, returning from burnout, or simply not ready to share unfinished work.</p>
+      <p>Writers needed a private space where they could organize their stories, build a writing habit, and receive encouragement without turning every writing session into a performance.</p>
+    </section>
+
+    <section class="case-section reveal">
+      <span class="case-num">02 — Objective</span>
+      <h2>What the platform needed to do</h2>
+      <p>Design and launch a writing platform that would:</p>
+      <ul>
+        <li>Support the full story-development process</li>
+        <li>Make small writing progress feel meaningful</li>
+        <li>Allow writers to share progress without exposing their manuscripts</li>
+        <li>Encourage community support without relying on popularity metrics</li>
+        <li>Work reliably across desktop and mobile</li>
+      </ul>
+    </section>
+
+    <section class="case-section reveal">
+      <span class="case-num">03 — Research</span>
+      <h2>What writers actually needed</h2>
+      <p>I combined my experience as a long-time online writer with early testing from around 10 writers, community feedback, competitor analysis, and insights gathered after launching the product.</p>
+      <p>The research revealed three recurring needs:</p>
+      <ul>
+        <li>Writers wanted accountability without publishing unfinished work.</li>
+        <li>Progress needed to feel meaningful before a story was completed.</li>
+        <li>Community interactions needed to feel supportive rather than competitive.</li>
+      </ul>
+      <p>These findings led to three product principles:</p>
+      <p class="case-principles">Progress over output. Presence over performance. Support over comparison.</p>
+    </section>
+
+    <section class="case-section reveal">
+      <span class="case-num">04 — Solution</span>
+      <h2>Three connected environments</h2>
+      <p>I designed OurSpace as a responsive writing platform with three connected environments:</p>
+      <ul>
+        <li><strong>My Space</strong> for private writing, chapter management, story structure, characters, world-building, and progress tracking.</li>
+        <li><strong>Writer's Den</strong> for focused writing sessions and personal challenges.</li>
+        <li><strong>Our Space</strong> for sharing writing progress and encouraging other writers without revealing manuscript content.</li>
+      </ul>
+      <p>The core experience, <strong>Candle Sessions</strong>, allowed writers to start a focused session, track their time and words, review their progress, and choose whether to keep the result private or share it with the community.</p>
+      <p>The platform grew to nearly 1,000 registered writers, including 860 users during its first week of soft launch, and continued evolving through hundreds of product iterations across mobile UX, authentication, data recovery, syncing, analytics, and community features.</p>
+      <div class="case-stat"><p>~1,000 registered writers · 860 users in the first week of soft launch</p></div>
+    </section>
+
+  </div>
+</div>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand"><a href="index.html#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Create with Gera</a><p>UX/UI Designer & Product Builder. Designing websites, dashboards, and digital products for founders and growing teams.</p></div>
+    <div class="foot-links">
+      <div class="foot-col"><h5>Navigate</h5><a href="index.html#about">About</a><a href="projects.html">Projects</a><a href="index.html#contact">Contact</a></div>
+      <div class="foot-col"><h5>Elsewhere</h5><a href="resume.html">Resume</a><a href="https://www.facebook.com/reigndaIe" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/reighndale" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a></div>
+    </div>
+  </div>
+  <div class="foot-wordmark" aria-hidden="true">Create with Gera</div>
+  <div class="foot-bottom"><span>© 2026 Gera Guerrero. All rights reserved.</span><span>Designed &amp; built by Gera</span></div>
+</footer>
+
+<script>
+  const prog=document.getElementById('progress');
+  const onScroll=()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%'};
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el)});
+</script>
+</body>
+</html>

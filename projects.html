@@ -61,7 +61,7 @@
   .proj-entry{display:grid;grid-template-columns:380px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid var(--line)}
   .proj-entry:first-child{padding-top:0}
   .proj-entry:last-child{border-bottom:none;padding-bottom:0}
-  .proj-media{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--off)}
+  .proj-media{position:relative;display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--off)}
   .proj-media img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
   .proj-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);color:#fff;padding:5px 11px;border-radius:100px}
   .proj-index{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--grey-mute);display:block;margin-bottom:10px}
@@ -69,8 +69,7 @@
   .proj-block{margin-bottom:18px}
   .proj-block h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-2);margin-bottom:6px}
   .proj-block p{font-size:15px;color:var(--grey);line-height:1.6}
-  .proj-outcome{font-size:14px;font-weight:600;color:var(--accent-ink);padding-top:16px;margin-top:6px;margin-bottom:22px;border-top:1px solid var(--line)}
-  .proj-links{display:flex;gap:10px;flex-wrap:wrap}
+  .proj-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
   .proj-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:600;padding:11px 20px;border-radius:100px;transition:transform .2s var(--ease),background .2s,color .2s;border:1px solid var(--ink)}
   .proj-btn.primary{background:var(--ink);color:#fff}
   .proj-btn.primary:hover{transform:translateY(-2px)}
@@ -134,16 +133,16 @@
     <div class="proj-list">
 
       <div class="proj-entry reveal">
-        <div class="proj-media"><span class="proj-badge">Case study</span><img src="assets/selected-projects/ourspace.png" alt="OurSpace screenshot"></div>
+        <a href="case-ourspace.html" class="proj-media"><span class="proj-badge">Case study</span><img src="assets/selected-projects/ourspace.png" alt="OurSpace screenshot"></a>
         <div class="proj-body">
           <span class="proj-index">01 / 07 — Product</span>
-          <h2>OurSpace</h2>
+          <h2><a href="case-ourspace.html">OurSpace</a></h2>
           <div class="proj-block"><h4>Problem</h4><p>Filipino fiction writers were juggling five or more separate apps — docs for drafting, spreadsheets for outlines, chat apps for character notes, socials for reader feedback — with nothing built for how they actually write.</p></div>
           <div class="proj-block"><h4>Approach</h4><p>Designed and built a single writing studio combining drafting, chapter organization, outline tools, and community feedback into one connected flow, launched in early access.</p></div>
           <div class="proj-block"><h4>Outcome</h4><p>A private studio that replaced five scattered apps with one.</p></div>
-          <div class="proj-outcome">1,000+ users in month one</div>
           <div class="proj-links">
-            <a href="https://ourwriting.space/" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
+            <a href="case-ourspace.html" class="proj-btn primary">Read case study</a>
+            <a href="https://ourwriting.space/" target="_blank" rel="noopener" class="proj-btn ghost">Live website</a>
           </div>
         </div>
       </div>
@@ -156,7 +155,6 @@
           <div class="proj-block"><h4>Problem</h4><p>A youth-led literacy nonprofit in Baler, Aurora needed a site that could turn visitors into volunteers, donors, and sponsors — not just explain the mission.</p></div>
           <div class="proj-block"><h4>Approach</h4><p>Structured the entire site around three clear action paths — volunteer, donate, sponsor — so every visitor has an obvious next step regardless of how they want to help.</p></div>
           <div class="proj-block"><h4>Outcome</h4><p>A youth-led movement site organized for action, not just awareness.</p></div>
-          <div class="proj-outcome">400+ volunteers · 1,100+ learners</div>
           <div class="proj-links">
             <a href="https://sikat-aurora.vercel.app/" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
           </div>
@@ -171,7 +169,6 @@
           <div class="proj-block"><h4>Problem</h4><p>Interested students were dropping off before booking a session — the inquiry process wasn't clear enough to turn interest into a booked class.</p></div>
           <div class="proj-block"><h4>Approach</h4><p>Rebuilt the landing page around a single, focused booking action, with pricing and trial details front and center instead of buried in navigation.</p></div>
           <div class="proj-block"><h4>Outcome</h4><p>A tutor landing page built around one clear inquiry action.</p></div>
-          <div class="proj-outcome">↓ Fewer inquiry drop-offs</div>
           <div class="proj-links">
             <a href="https://learnwithaya.space/" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
           </div>
@@ -186,7 +183,6 @@
           <div class="proj-block"><h4>Problem</h4><p>A large product catalog on a major PH retailer's site risked feeling overwhelming and hard to browse.</p></div>
           <div class="proj-block"><h4>Approach</h4><p>Reworked the product hierarchy and page structure so the catalog feels curated rather than dumped, guiding shoppers toward the right category faster.</p></div>
           <div class="proj-block"><h4>Outcome</h4><p>A brand storefront that shapes a large catalog into a clear path.</p></div>
-          <div class="proj-outcome">↑ Clearer hierarchy</div>
           <div class="proj-links">
             <a href="https://www.abenson.com/brands/apple-store" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
           </div>
@@ -201,7 +197,6 @@
           <div class="proj-block"><h4>Problem</h4><p>Mattress and sleep shopping is a considered purchase — shoppers needed a way to compare options by what actually matters to them, not just browse a product grid.</p></div>
           <div class="proj-block"><h4>Approach</h4><p>Organized the sleep-range landing page around the real decision factors shoppers use: comfort, size, and budget.</p></div>
           <div class="proj-block"><h4>Outcome</h4><p>A sleep-range page organized around how people actually choose.</p></div>
-          <div class="proj-outcome">↑ Guided journey</div>
           <div class="proj-links">
             <a href="https://www.abenson.com/sleep-page" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
           </div>
@@ -216,7 +211,6 @@
           <div class="proj-block"><h4>Problem</h4><p>Abenson wanted a distinct storefront that spoke to a younger, Gen Z audience without diluting the parent brand.</p></div>
           <div class="proj-block"><h4>Approach</h4><p>Positioned ABZ around value, exclusive perks, and fast delivery — the priorities that matter most to a younger, mobile-first shopper.</p></div>
           <div class="proj-block"><h4>Outcome</h4><p>A Gen Z-focused lifestyle tech storefront under the Abenson brand.</p></div>
-          <div class="proj-outcome">Powered by Abenson</div>
           <div class="proj-links">
             <a href="https://abz.com.ph/why-abz" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
           </div>
@@ -231,7 +225,6 @@
           <div class="proj-block"><h4>Problem</h4><p>Manually tracking and responding to Google reviews across multiple Abenson store locations was slow and inconsistent.</p></div>
           <div class="proj-block"><h4>Approach</h4><p>Designed an internal dashboard prototype to automate review monitoring and streamline how staff track and respond to feedback.</p></div>
           <div class="proj-block"><h4>Outcome</h4><p>A dashboard prototype for automating review responses across stores.</p></div>
-          <div class="proj-outcome">Figma prototype</div>
           <div class="proj-links">
             <a href="https://www.figma.com/proto/giiJkOmtjZv0q6H3NR2nnm/Google-Review-Automation?node-id=691-22817&p=f" target="_blank" rel="noopener" class="proj-btn primary">View prototype</a>
           </div>
