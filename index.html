@@ -47,23 +47,13 @@
   .avail i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent);opacity:.5;animation:ping 2s var(--ease) infinite}
   @keyframes ping{0%{transform:scale(.8);opacity:.6}80%,100%{transform:scale(2);opacity:0}}
   .hero-floats{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-  .fw{position:absolute;width:280px;border-radius:12px;overflow:hidden;background:var(--white);
-     border:1px solid var(--line);box-shadow:0 24px 60px -18px rgba(17,17,17,.28);
-     opacity:.9;animation:floaty 9s var(--ease) infinite}
-  .fw-bar{display:flex;align-items:center;gap:5px;padding:9px 11px;background:var(--off);border-bottom:1px solid var(--line)}
-  .fw-bar i{width:8px;height:8px;border-radius:50%;background:var(--line);display:block}
-  .fw-bar i:first-child{background:var(--accent);opacity:.7}
-  .fw-body{padding:14px}
-  .fw-row{height:8px;border-radius:4px;background:var(--line-2);margin-bottom:8px}
-  .fw-row.t{width:42%;height:11px;background:var(--accent);opacity:.85;margin-bottom:12px}
-  .fw-row.a{width:92%}.fw-row.b{width:78%}.fw-row.c{width:64%}
-  .fw-hero-block{height:52px;border-radius:8px;background:linear-gradient(135deg,var(--ink),#333);margin-bottom:12px}
-  .fw-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-  .fw-grid span{height:34px;border-radius:6px;background:var(--line-2);display:block}
-  .fw-label{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-mute);padding:0 14px 12px}
+  .fw{position:absolute;width:200px;background:linear-gradient(160deg,#ffffff,#faf4f0);border-radius:3px;padding:10px 10px 30px;box-shadow:0 22px 50px -16px rgba(17,17,17,.3),0 2px 8px rgba(17,17,17,.1);opacity:.95;animation:floaty 9s var(--ease) infinite}
+  .fw-photo{width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--off)}
+  .fw-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .fw-label{font-family:var(--hand);font-size:16px;font-weight:600;color:var(--ink);text-align:center;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .fw1{top:12%;left:-2%;transform:rotate(-6deg);animation-delay:0s}
-  .fw2{top:15%;right:-1%;transform:rotate(5deg);width:260px;animation-delay:1.4s}
-  .fw3{bottom:9%;left:1%;transform:rotate(4deg);width:260px;animation-delay:.7s}
+  .fw2{top:15%;right:-1%;transform:rotate(5deg);animation-delay:1.4s}
+  .fw3{bottom:9%;left:1%;transform:rotate(4deg);animation-delay:.7s}
   .fw4{bottom:12%;right:-2%;transform:rotate(-5deg);animation-delay:2.1s}
   @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0))}50%{transform:translateY(-14px) rotate(var(--r,0))}}
   .fw1{--r:-6deg}.fw2{--r:5deg}.fw3{--r:4deg}.fw4{--r:-5deg}
@@ -103,7 +93,7 @@
   .contact{background:var(--white)}
   .sec-head{margin-bottom:60px;max-width:640px}
   .sec-num{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin-bottom:16px;display:block}
-  .sec-title{font-family:var(--hand);font-size:clamp(3rem,6vw,4.8rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:16px}
+  .sec-title{font-family:var(--hand);font-size:clamp(1.75rem,6vw,4.8rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:16px;white-space:nowrap;max-width:none}
   .sec-intro{font-size:1.2rem;color:var(--grey);line-height:1.42}
 
   /* FLAGSHIP */
@@ -306,10 +296,10 @@
 
 <header class="hero" id="top">
   <div class="hero-floats" aria-hidden="true">
-    <div class="fw fw1"><div class="fw-bar"><i></i><i></i><i></i></div><div class="fw-body"><div class="fw-hero-block"></div><div class="fw-row a"></div><div class="fw-row b"></div></div><div class="fw-label">OurSpace — Web App</div></div>
-    <div class="fw fw2"><div class="fw-bar"><i></i><i></i><i></i></div><div class="fw-body"><div class="fw-row t"></div><div class="fw-row a"></div><div class="fw-row c"></div><div class="fw-grid"><span></span><span></span></div></div><div class="fw-label">Síkat-Aurora — Nonprofit</div></div>
-    <div class="fw fw3"><div class="fw-bar"><i></i><i></i><i></i></div><div class="fw-body"><div class="fw-row t"></div><div class="fw-row a"></div><div class="fw-row b"></div><div class="fw-row c"></div></div><div class="fw-label">Teacher Aiah — Landing</div></div>
-    <div class="fw fw4"><div class="fw-bar"><i></i><i></i><i></i></div><div class="fw-body"><div class="fw-hero-block"></div><div class="fw-grid"><span></span><span></span></div></div><div class="fw-label">Abenson — E-commerce</div></div>
+    <div class="fw fw1"><div class="fw-photo"><img src="assets/selected-projects/ourspace.png" alt="" loading="lazy"></div><div class="fw-label">OurSpace</div></div>
+    <div class="fw fw2"><div class="fw-photo"><img src="assets/selected-projects/sikat-aurora.png" alt="" loading="lazy"></div><div class="fw-label">Síkat-Aurora</div></div>
+    <div class="fw fw3"><div class="fw-photo"><img src="assets/selected-projects/learnwithaaya.png" alt="" loading="lazy"></div><div class="fw-label">Teacher Aiah</div></div>
+    <div class="fw fw4"><div class="fw-photo"><img src="assets/selected-projects/abenson-apple-store.png" alt="" loading="lazy"></div><div class="fw-label">Abenson</div></div>
   </div>
   <div class="wrap hero-wrap">
     <p class="eyebrow reveal">UX/UI Designer &amp; Product Builder · Philippines</p>
@@ -547,7 +537,7 @@
       <button class="btn btn-primary">Send project inquiry</button>
     </div>
     <div class="contact-meta reveal">
-      <div><span>Email</span><p>hello@example.space</p></div>
+      <div><span>Email</span><p><a href="mailto:guerreroghen@gmail.com">guerreroghen@gmail.com</a></p></div>
       <div><span>Location</span><p>Philippines · GMT+8</p></div>
     </div>
   </div>
@@ -643,8 +633,17 @@
 
     document.addEventListener('scroll',onScroll,{passive:true});
     window.addEventListener('resize',measure);
-    // recheck after fonts/images settle
-    window.addEventListener('load',measure);
+    // recheck after fonts/images settle, then re-land on the URL hash target —
+    // the pin track's height grows once measured, which can leave an initial
+    // hash-navigation (e.g. resume.html -> index.html#services) scrolled to a
+    // stale mid-carousel position from before the track was resized.
+    window.addEventListener('load',()=>{
+      measure();
+      if(location.hash){
+        const target=document.querySelector(location.hash);
+        if(target) requestAnimationFrame(()=>target.scrollIntoView());
+      }
+    });
     measure();
 
     // Keyboard on the carousel still nudges
