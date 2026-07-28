@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gera Guerrero — Resume</title>
 <meta name="description" content="Resume — Geraldine 'Gera' Guerrero, UI/UX Designer & Product Builder.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -29,11 +30,13 @@
 
   nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line-2)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
-  .logo{font-family:var(--hand);font-size:24px;font-weight:700;letter-spacing:0;color:var(--ink)}
+  .logo{font-family:var(--hand);font-size:24px;font-weight:700;letter-spacing:0;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+  .logo-mark{width:26px;height:26px;display:block;flex-shrink:0}
   .nav-links{display:flex;gap:32px;align-items:center}
   .nav-links a{font-size:14px;font-weight:400;color:var(--ink);opacity:.72;transition:opacity .2s}
   .nav-links a:hover,.nav-links a.active{opacity:1}
-  .nav-cta{font-size:14px;font-weight:500;background:var(--ink);color:var(--white)!important;padding:8px 17px;border-radius:100px;opacity:1!important;transition:transform .2s}
+  .nav-cta{font-size:14px;font-weight:500;background:var(--accent-ink);color:var(--white)!important;padding:8px 17px;border-radius:100px;opacity:1!important;transition:transform .2s,background .2s}
+  .nav-cta:hover{background:var(--accent)}
   .nav-cta:hover{transform:scale(1.04)}
   .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
 
@@ -97,7 +100,8 @@
   footer{background:#A83620;color:#fff;padding:72px 0 32px;overflow:hidden}
   .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.22)}
   .foot-brand{max-width:340px}
-  .foot-brand .logo{margin-bottom:14px;display:inline-block;color:#fff}
+  .foot-brand .logo{margin-bottom:14px;color:#fff}
+  .foot-brand .logo-mark{filter:brightness(0) invert(1)}
   .foot-brand p{font-size:14px;color:rgba(255,255,255,.82);line-height:1.55}
   .foot-links{display:flex;gap:64px}
   .foot-col h5{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px}
@@ -114,13 +118,13 @@
 
 <nav>
   <div class="wrap nav-inner">
-    <a href="index.html#top" class="logo">Gera Guerrero</a>
+    <a href="index.html#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Gera Guerrero</a>
     <div class="nav-links">
       <a href="index.html#about">About</a>
       <a href="index.html#work">Work</a>
       <a href="index.html#services">Services</a>
       <a href="resume.html" class="active">Resume</a>
-      <a href="index.html#contact" class="nav-cta">Work with me</a>
+      <a href="index.html#contact" class="nav-cta">Create with Me</a>
     </div>
     <button class="menu-btn">☰</button>
   </div>
@@ -135,8 +139,8 @@
       <p class="resume-location reveal">Baler, Aurora, Philippines</p>
       <div class="resume-contact reveal">
         <a href="mailto:guerreroghen@gmail.com">guerreroghen@gmail.com</a>
-        <a href="tel:+639701856532">0970-1856-532</a>
-        <a href="https://linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="tel:+639707034358">+6397-0703-4358</a>
+        <a href="https://www.linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://guardianlovers.space" target="_blank" rel="noopener">guardianlovers.space</a>
       </div>
     </div>
@@ -261,10 +265,10 @@
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div class="foot-brand"><a href="index.html#top" class="logo">Gera Guerrero</a><p>UX/UI Designer & Product Builder. Designing websites, dashboards, and digital products for founders and growing teams.</p></div>
+      <div class="foot-brand"><a href="index.html#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Gera Guerrero</a><p>UX/UI Designer & Product Builder. Designing websites, dashboards, and digital products for founders and growing teams.</p></div>
       <div class="foot-links">
         <div class="foot-col"><h5>Navigate</h5><a href="index.html#about">About</a><a href="index.html#work">Work</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a></div>
-        <div class="foot-col"><h5>Elsewhere</h5><a href="resume.html">Resume</a><a href="#">Blog</a><a href="https://linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a><a href="#">Behance</a></div>
+        <div class="foot-col"><h5>Elsewhere</h5><a href="resume.html">Resume</a><a href="https://www.facebook.com/reigndaIe" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/reighndale" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a></div>
       </div>
     </div>
   </div>
