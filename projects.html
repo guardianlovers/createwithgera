@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gera Guerrero — All Projects</title>
+<meta name="description" content="All projects — problem, approach, and outcome for each piece of client, nonprofit, and product work.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Dreamy Notes Sans';src:url("assets/font/Dreamy Notes Sans.otf") format('opentype');font-weight:400 700;font-style:normal;font-display:swap}
+  :root{
+    --black:#000000;--ink:#111111;--grey:#666666;--grey-2:#999999;--grey-mute:#6E6E6E;
+    --line:#E6E6E6;--line-2:#F0F0F0;--white:#FFFFFF;--off:#F7F7F7;
+    --accent:#B83D24;--accent-bright:#E15235;--accent-ink:#A83620;--accent-wash:#FBEAE4;
+    --sans:'Nunito',-apple-system,system-ui,sans-serif;--hand:'Dreamy Notes Sans','Caveat',cursive;--mono:'JetBrains Mono',monospace;
+    --ease:cubic-bezier(.22,.7,.28,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--white);color:var(--ink);line-height:1.5;font-size:17px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;overflow-x:hidden}
+  ::selection{background:var(--ink);color:var(--white)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:200;transition:width .1s linear}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line-2)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .logo{font-family:var(--hand);font-size:24px;font-weight:700;letter-spacing:0;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+  .logo-mark{width:26px;height:26px;display:block;flex-shrink:0}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:400;color:var(--ink);opacity:.72;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1}
+  .nav-cta{font-size:14px;font-weight:500;background:var(--accent-ink);color:var(--white)!important;padding:8px 17px;border-radius:100px;opacity:1!important;transition:transform .2s,background .2s}
+  .nav-cta:hover{background:var(--accent)}
+  .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
+
+  .btn{font-size:16px;font-weight:500;padding:13px 27px;border-radius:100px;transition:transform .2s var(--ease),background .2s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:7px}
+  .btn-primary{background:var(--ink);color:var(--white)}
+  .btn-primary:hover{transform:scale(1.03)}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--white);transform:scale(1.03)}
+
+  section{padding:110px 0}
+  .sec-head{margin-bottom:60px;max-width:640px}
+  .sec-num{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin-bottom:16px;display:block}
+  .sec-title{font-family:var(--hand);font-size:clamp(1.75rem,6vw,4.8rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:16px;white-space:nowrap;max-width:none}
+  .sec-intro{font-size:1.2rem;color:var(--grey);line-height:1.42}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  .all-hero{padding:150px 0 60px;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%);border-bottom:1px solid var(--line)}
+  .all-hero .sec-head{margin-bottom:0}
+
+  .proj-list{display:flex;flex-direction:column}
+  .proj-entry{display:grid;grid-template-columns:380px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid var(--line)}
+  .proj-entry:first-child{padding-top:0}
+  .proj-entry:last-child{border-bottom:none;padding-bottom:0}
+  .proj-media{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--off)}
+  .proj-media img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .proj-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);color:#fff;padding:5px 11px;border-radius:100px}
+  .proj-index{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--grey-mute);display:block;margin-bottom:10px}
+  .proj-body h2{font-family:var(--sans);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;color:var(--black);margin-bottom:18px}
+  .proj-block{margin-bottom:18px}
+  .proj-block h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-2);margin-bottom:6px}
+  .proj-block p{font-size:15px;color:var(--grey);line-height:1.6}
+  .proj-outcome{font-size:14px;font-weight:600;color:var(--accent-ink);padding-top:16px;margin-top:6px;margin-bottom:22px;border-top:1px solid var(--line)}
+  .proj-links{display:flex;gap:10px;flex-wrap:wrap}
+  .proj-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:600;padding:11px 20px;border-radius:100px;transition:transform .2s var(--ease),background .2s,color .2s;border:1px solid var(--ink)}
+  .proj-btn.primary{background:var(--ink);color:#fff}
+  .proj-btn.primary:hover{transform:translateY(-2px)}
+  .proj-btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .proj-btn.ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+  @media(max-width:900px){
+    .proj-entry{grid-template-columns:1fr;gap:24px}
+  }
+  @media(max-width:640px){
+    .wrap{padding:0 24px}
+    .nav-links{display:none}.menu-btn{display:block}
+    section{padding:80px 0}.all-hero{padding:96px 0 48px}
+    .proj-entry{padding:48px 0}
+  }
+
+  footer{background:#A83620;color:#fff;padding:72px 0 32px;overflow:hidden}
+  .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.22)}
+  .foot-brand{max-width:340px}
+  .foot-brand .logo{margin-bottom:14px;color:#fff}
+  .foot-brand .logo-mark{filter:brightness(0) invert(1)}
+  .foot-brand p{font-size:14px;color:rgba(255,255,255,.82);line-height:1.55}
+  .foot-links{display:flex;gap:64px}
+  .foot-col h5{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px}
+  .foot-col a{display:block;font-size:14px;color:#fff;opacity:.88;margin-bottom:11px;transition:opacity .2s}
+  .foot-col a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+  .foot-wordmark{font-family:var(--sans);font-weight:800;font-size:clamp(2.25rem,11.5vw,13rem);line-height:.9;letter-spacing:-.04em;text-transform:none;color:#fff;text-align:center;white-space:nowrap;margin:56px 0 24px;user-select:none}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);font-size:13px;color:rgba(255,255,255,.82);flex-wrap:wrap;gap:10px}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="index.html#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Create with Gera</a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="index.html#services">Services</a>
+      <a href="resume.html">Resume</a>
+      <a href="index.html#contact" class="nav-cta">Create with Me</a>
+    </div>
+    <button class="menu-btn">☰</button>
+  </div>
+</nav>
+
+<header class="all-hero">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">All Projects</span>
+      <h1 class="sec-title">Every project, in full.</h1>
+      <p class="sec-intro">The problem, the approach, and the outcome for each piece of work — nonprofit, client, and product.</p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="proj-list">
+
+      <div class="proj-entry reveal">
+        <div class="proj-media"><span class="proj-badge">Case study</span><img src="assets/selected-projects/ourspace.png" alt="OurSpace screenshot"></div>
+        <div class="proj-body">
+          <span class="proj-index">01 / 07 — Product</span>
+          <h2>OurSpace</h2>
+          <div class="proj-block"><h4>Problem</h4><p>Filipino fiction writers were juggling five or more separate apps — docs for drafting, spreadsheets for outlines, chat apps for character notes, socials for reader feedback — with nothing built for how they actually write.</p></div>
+          <div class="proj-block"><h4>Approach</h4><p>Designed and built a single writing studio combining drafting, chapter organization, outline tools, and community feedback into one connected flow, launched in early access.</p></div>
+          <div class="proj-block"><h4>Outcome</h4><p>A private studio that replaced five scattered apps with one.</p></div>
+          <div class="proj-outcome">1,000+ users in month one</div>
+          <div class="proj-links">
+            <a href="https://ourwriting.space/" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal">
+        <div class="proj-media"><img src="assets/selected-projects/sikat-aurora.png" alt="Síkat-Aurora Inc. screenshot"></div>
+        <div class="proj-body">
+          <span class="proj-index">02 / 07 — Nonprofit</span>
+          <h2>Síkat-Aurora Inc.</h2>
+          <div class="proj-block"><h4>Problem</h4><p>A youth-led literacy nonprofit in Baler, Aurora needed a site that could turn visitors into volunteers, donors, and sponsors — not just explain the mission.</p></div>
+          <div class="proj-block"><h4>Approach</h4><p>Structured the entire site around three clear action paths — volunteer, donate, sponsor — so every visitor has an obvious next step regardless of how they want to help.</p></div>
+          <div class="proj-block"><h4>Outcome</h4><p>A youth-led movement site organized for action, not just awareness.</p></div>
+          <div class="proj-outcome">400+ volunteers · 1,100+ learners</div>
+          <div class="proj-links">
+            <a href="https://sikat-aurora.vercel.app/" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal">
+        <div class="proj-media"><img src="assets/selected-projects/learnwithaaya.png" alt="Learn with Teacher Aiah screenshot"></div>
+        <div class="proj-body">
+          <span class="proj-index">03 / 07 — Landing page</span>
+          <h2>Learn with Teacher Aiah</h2>
+          <div class="proj-block"><h4>Problem</h4><p>Interested students were dropping off before booking a session — the inquiry process wasn't clear enough to turn interest into a booked class.</p></div>
+          <div class="proj-block"><h4>Approach</h4><p>Rebuilt the landing page around a single, focused booking action, with pricing and trial details front and center instead of buried in navigation.</p></div>
+          <div class="proj-block"><h4>Outcome</h4><p>A tutor landing page built around one clear inquiry action.</p></div>
+          <div class="proj-outcome">↓ Fewer inquiry drop-offs</div>
+          <div class="proj-links">
+            <a href="https://learnwithaya.space/" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal">
+        <div class="proj-media"><img src="assets/selected-projects/abenson-apple-store.png" alt="Abenson Apple Store screenshot"></div>
+        <div class="proj-body">
+          <span class="proj-index">04 / 07 — E-commerce</span>
+          <h2>Abenson — Apple Store</h2>
+          <div class="proj-block"><h4>Problem</h4><p>A large product catalog on a major PH retailer's site risked feeling overwhelming and hard to browse.</p></div>
+          <div class="proj-block"><h4>Approach</h4><p>Reworked the product hierarchy and page structure so the catalog feels curated rather than dumped, guiding shoppers toward the right category faster.</p></div>
+          <div class="proj-block"><h4>Outcome</h4><p>A brand storefront that shapes a large catalog into a clear path.</p></div>
+          <div class="proj-outcome">↑ Clearer hierarchy</div>
+          <div class="proj-links">
+            <a href="https://www.abenson.com/brands/apple-store" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal">
+        <div class="proj-media"><img src="assets/selected-projects/abenson-sleeppage.png" alt="Abenson Sleep Page screenshot"></div>
+        <div class="proj-body">
+          <span class="proj-index">05 / 07 — E-commerce</span>
+          <h2>Abenson — Sleep Page</h2>
+          <div class="proj-block"><h4>Problem</h4><p>Mattress and sleep shopping is a considered purchase — shoppers needed a way to compare options by what actually matters to them, not just browse a product grid.</p></div>
+          <div class="proj-block"><h4>Approach</h4><p>Organized the sleep-range landing page around the real decision factors shoppers use: comfort, size, and budget.</p></div>
+          <div class="proj-block"><h4>Outcome</h4><p>A sleep-range page organized around how people actually choose.</p></div>
+          <div class="proj-outcome">↑ Guided journey</div>
+          <div class="proj-links">
+            <a href="https://www.abenson.com/sleep-page" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal">
+        <div class="proj-media"><img src="assets/selected-projects/why-abz.png" alt="ABZ — Why ABZ screenshot"></div>
+        <div class="proj-body">
+          <span class="proj-index">06 / 07 — E-commerce</span>
+          <h2>ABZ — Why ABZ</h2>
+          <div class="proj-block"><h4>Problem</h4><p>Abenson wanted a distinct storefront that spoke to a younger, Gen Z audience without diluting the parent brand.</p></div>
+          <div class="proj-block"><h4>Approach</h4><p>Positioned ABZ around value, exclusive perks, and fast delivery — the priorities that matter most to a younger, mobile-first shopper.</p></div>
+          <div class="proj-block"><h4>Outcome</h4><p>A Gen Z-focused lifestyle tech storefront under the Abenson brand.</p></div>
+          <div class="proj-outcome">Powered by Abenson</div>
+          <div class="proj-links">
+            <a href="https://abz.com.ph/why-abz" target="_blank" rel="noopener" class="proj-btn primary">Live website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal">
+        <div class="proj-media"><span class="proj-badge">Prototype</span><img src="assets/selected-projects/google-review-automation.png" alt="Google Review Automation screenshot"></div>
+        <div class="proj-body">
+          <span class="proj-index">07 / 07 — Internal tool</span>
+          <h2>Google Review Automation</h2>
+          <div class="proj-block"><h4>Problem</h4><p>Manually tracking and responding to Google reviews across multiple Abenson store locations was slow and inconsistent.</p></div>
+          <div class="proj-block"><h4>Approach</h4><p>Designed an internal dashboard prototype to automate review monitoring and streamline how staff track and respond to feedback.</p></div>
+          <div class="proj-block"><h4>Outcome</h4><p>A dashboard prototype for automating review responses across stores.</p></div>
+          <div class="proj-outcome">Figma prototype</div>
+          <div class="proj-links">
+            <a href="https://www.figma.com/proto/giiJkOmtjZv0q6H3NR2nnm/Google-Review-Automation?node-id=691-22817&p=f" target="_blank" rel="noopener" class="proj-btn primary">View prototype</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><a href="index.html#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Create with Gera</a><p>UX/UI Designer & Product Builder. Designing websites, dashboards, and digital products for founders and growing teams.</p></div>
+      <div class="foot-links">
+        <div class="foot-col"><h5>Navigate</h5><a href="index.html#about">About</a><a href="index.html#work">Work</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a></div>
+        <div class="foot-col"><h5>Elsewhere</h5><a href="resume.html">Resume</a><a href="https://www.facebook.com/reigndaIe" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/reighndale" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/createwithgera" target="_blank" rel="noopener">LinkedIn</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-wordmark" aria-hidden="true">Create with Gera</div>
+  <div class="wrap">
+    <div class="foot-bottom"><span>© 2026 Gera Guerrero. All rights reserved.</span><span>Designed &amp; built by Gera</span></div>
+  </div>
+</footer>
+
+<script>
+  const prog=document.getElementById('progress');
+  const onScroll=()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%'};
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el)});
+</script>
+</body>
+</html>
