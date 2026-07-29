@@ -50,11 +50,16 @@
 
   .case-hero{padding:150px 0 0;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%)}
   .case-hero .wrap{max-width:1080px}
+  .case-breadcrumb{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--grey-mute);margin-bottom:24px}
+  .case-breadcrumb a{color:var(--grey-mute);transition:color .2s}
+  .case-breadcrumb a:hover{color:var(--ink)}
+  .case-breadcrumb .sep{color:var(--line-2)}
+  .case-breadcrumb .current{color:var(--ink);font-weight:600}
   .case-eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
-  .case-title{font-family:var(--hand);font-size:clamp(2.6rem,6vw,4.5rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black);margin-bottom:16px}
-  .case-sub{font-size:1.15rem;color:var(--grey);max-width:640px;line-height:1.5;margin-bottom:28px}
-  .case-links{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
-  .case-cta{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;padding:11px 20px;border-radius:100px;border:1px solid var(--ink);transition:transform .2s var(--ease),background .2s,color .2s}
+  .case-title-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:16px}
+  .case-title{font-family:var(--hand);font-size:clamp(2.6rem,6vw,4.5rem);font-weight:700;line-height:1;letter-spacing:0;color:var(--black)}
+  .case-sub{font-size:1.15rem;color:var(--grey);max-width:640px;line-height:1.5;margin-bottom:48px}
+  .case-cta{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;padding:11px 20px;border-radius:100px;border:1px solid var(--ink);transition:transform .2s var(--ease),background .2s,color .2s;flex-shrink:0}
   .case-cta.primary{background:var(--ink);color:#fff}
   .case-cta.primary:hover{transform:translateY(-2px)}
   .case-cta.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
@@ -71,7 +76,7 @@
   .case-section ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin:16px 0}
   .case-section li{font-size:16px;color:var(--grey);line-height:1.55;display:flex;gap:10px;padding-left:2px}
   .case-section li::before{content:'—';color:var(--accent);flex-shrink:0}
-  .case-principles{font-family:var(--hand);font-size:1.6rem;color:var(--black);line-height:1.4;margin:18px 0}
+  .case-principles{font-family:var(--sans);font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--black);line-height:1.5;margin:18px 0}
   .case-stat{background:var(--off);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:20px}
   .case-stat p{color:var(--ink);font-weight:600;margin-bottom:0}
 
@@ -117,13 +122,15 @@
 
 <header class="case-hero">
   <div class="wrap">
+    <nav class="case-breadcrumb reveal" aria-label="Breadcrumb">
+      <a href="index.html#top">Home</a><span class="sep">/</span><a href="projects.html">Projects</a><span class="sep">/</span><span class="current">OurSpace</span>
+    </nav>
     <p class="case-eyebrow reveal">Case Study</p>
-    <h1 class="case-title reveal">OurSpace</h1>
-    <p class="case-sub reveal">A private writing platform for Filipino fiction writers — built around progress, not performance.</p>
-    <div class="case-links reveal">
+    <div class="case-title-row reveal">
+      <h1 class="case-title">OurSpace</h1>
       <a href="https://ourwriting.space/" target="_blank" rel="noopener" class="case-cta primary">Live website</a>
-      <a href="projects.html" class="case-cta ghost">← All projects</a>
     </div>
+    <p class="case-sub reveal">A private writing platform for Filipino fiction writers — built around progress, not performance.</p>
   </div>
   <div class="wrap" style="max-width:1080px">
     <div class="case-hero-img reveal"><img src="assets/selected-projects/ourspace.png" alt="OurSpace product screenshot"></div>
