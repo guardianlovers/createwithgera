@@ -51,15 +51,12 @@
   .nav-cta:hover{transform:scale(1.04)}
   .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
 
-  .hero{position:relative;min-height:calc(100vh - 57px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:100px 0 70px;text-align:center;overflow:hidden;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%)}
+  .hero{position:relative;min-height:calc(100vh - 57px);display:flex;align-items:center;justify-content:center;padding:80px 0;text-align:center;overflow:hidden;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%)}
+  .hero-photo{position:absolute;inset:0;z-index:0;display:none;background:#F7F4EF center center/cover no-repeat;animation:heroZoom 24s ease-in-out infinite alternate}
+  @keyframes heroZoom{0%{transform:scale(1)}100%{transform:scale(1.05)}}
+  @media(min-width:760px){.hero-photo{display:block;background-image:url("assets/hero/art-flatlay.jpg")}}
   .hero-wrap{position:relative;z-index:2;padding-bottom:0}
-  .hero-scene{position:relative;z-index:1;width:100%;display:flex;justify-content:center;pointer-events:none}
-  .hero-desk-slot{width:520px;max-width:78vw}
-  .hero-desk{filter:drop-shadow(0 40px 70px rgba(17,17,17,.16));animation:deskFloat 7s var(--ease) infinite}
-  .hero-desk img{width:100%;display:block}
-  @keyframes deskFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(-1.2deg)}}
-  @media(max-width:760px){.hero-desk-slot{width:340px}}
-  .eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
+  .eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent-ink);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
   h1.hero-title{font-family:var(--hand);font-size:clamp(3.6rem,9vw,7.2rem);font-weight:700;line-height:.95;letter-spacing:0;color:var(--black);margin:0 auto 22px;max-width:12ch}
   h1.hero-title .hl{color:var(--accent)}
   h1.hero-title .caret{display:inline-block;color:var(--accent);animation:caretBlink .9s step-end infinite;font-weight:400}
@@ -258,6 +255,7 @@
 </nav>
 
 <header class="hero" id="top">
+  <div class="hero-photo" aria-hidden="true"></div>
   <div class="wrap hero-wrap">
     <p class="eyebrow reveal">UX/UI Designer &amp; Product Builder · Philippines</p>
     <h1 class="hero-title reveal"><span class="sr-only">Create with Gera</span><span class="type-wrap" aria-hidden="true">Create with <span class="hl">Gera</span></span></h1>
@@ -265,13 +263,6 @@
     <div class="hero-ctas reveal">
       <a href="#contact" class="btn btn-primary">Create with Me</a>
       <a href="#work" class="btn btn-outline">See my work</a>
-    </div>
-  </div>
-  <div class="hero-scene" aria-hidden="true">
-    <div class="hero-desk-slot" data-depth=".2">
-      <div class="hero-desk">
-        <img src="assets/hero/art-desk-cutout.png" alt="" loading="eager">
-      </div>
     </div>
   </div>
 </header>
@@ -570,27 +561,6 @@
     document.addEventListener('click',e=>{if(nav.classList.contains('open')&&!nav.contains(e.target)&&!btn.contains(e.target))close()});
     document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
     window.addEventListener('resize',()=>{if(window.innerWidth>640)close()});
-  })();
-
-  (function heroParallax(){
-    const hero=document.querySelector('.hero');
-    const layers=document.querySelectorAll('.hero-scene [data-depth]');
-    if(!hero||!layers.length)return;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    let raf=null;
-    function apply(){
-      raf=null;
-      const rect=hero.getBoundingClientRect();
-      layers.forEach(el=>{
-        const depth=parseFloat(el.dataset.depth||.3);
-        el.style.transform='translateY('+(-rect.top*depth)+'px)';
-      });
-    }
-    function onScroll(){
-      if(!raf)raf=requestAnimationFrame(apply);
-    }
-    window.addEventListener('scroll',onScroll,{passive:true});
-    apply();
   })();
 
   function typewriterHero(){
