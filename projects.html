@@ -278,8 +278,33 @@
   const onScroll=()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.transform='scaleX('+sc+')'};
   document.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el)});
+  function startEntrance(){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el)});
+  }
+
+  (function pageLoader(){
+    const loader=document.getElementById('loader');
+    if(!loader){startEntrance();return;}
+    document.body.classList.add('loading');
+    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const minWait=reduce?0:450;
+    const start=Date.now();
+    function reveal(){
+      const wait=Math.max(0,minWait-(Date.now()-start));
+      setTimeout(()=>{
+        document.body.classList.remove('loading');
+        loader.classList.add('hide');
+        startEntrance();
+        let done=false;
+        const cleanup=()=>{if(done)return;done=true;loader.remove()};
+        loader.addEventListener('transitionend',cleanup,{once:true});
+        setTimeout(cleanup,700);
+      },wait);
+    }
+    const fontsReady=(document.fonts&&document.fonts.ready)?document.fonts.ready.catch(()=>{}):Promise.resolve();
+    Promise.race([fontsReady,new Promise(res=>setTimeout(res,2200))]).then(reveal);
+  })();
 
   (function mobileMenu(){
     const btn=document.querySelector('.menu-btn');
