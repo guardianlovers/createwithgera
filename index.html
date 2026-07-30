@@ -47,21 +47,25 @@
   .avail i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent);opacity:.5;animation:ping 2s var(--ease) infinite}
   @keyframes ping{0%{transform:scale(.8);opacity:.6}80%,100%{transform:scale(2);opacity:0}}
   .hero-floats{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-  .fw{position:absolute;width:200px;background:linear-gradient(160deg,#ffffff,#faf4f0);border-radius:3px;padding:10px 10px 30px;box-shadow:0 22px 50px -16px rgba(17,17,17,.3),0 2px 8px rgba(17,17,17,.1);opacity:.95;animation:floaty 9s var(--ease) infinite}
+  .fw{position:absolute;width:260px;background:linear-gradient(160deg,#ffffff,#faf4f0);border-radius:3px;padding:14px 14px 38px;box-shadow:0 26px 60px -16px rgba(17,17,17,.32),0 2px 10px rgba(17,17,17,.1);opacity:.95;animation:floaty 9s var(--ease) infinite}
   .fw-photo{width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--off)}
   .fw-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-  .fw-label{font-family:var(--hand);font-size:16px;font-weight:600;color:var(--ink);text-align:center;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .fw1{top:12%;left:-2%;transform:rotate(-6deg);animation-delay:0s}
-  .fw2{top:15%;right:-1%;transform:rotate(5deg);animation-delay:1.4s}
-  .fw3{bottom:9%;left:1%;transform:rotate(4deg);animation-delay:.7s}
-  .fw4{bottom:12%;right:-2%;transform:rotate(-5deg);animation-delay:2.1s}
+  .fw-label{font-family:var(--hand);font-size:19px;font-weight:600;color:var(--ink);text-align:center;margin-top:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fw1{top:11%;left:-4%;transform:rotate(-6deg);animation-delay:0s}
+  .fw2{top:14%;right:-3%;transform:rotate(5deg);animation-delay:1.4s}
+  .fw3{bottom:7%;left:-1%;transform:rotate(4deg);animation-delay:.7s}
+  .fw4{bottom:10%;right:-4%;transform:rotate(-5deg);animation-delay:2.1s}
   @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0))}50%{transform:translateY(-14px) rotate(var(--r,0))}}
   .fw1{--r:-6deg}.fw2{--r:5deg}.fw3{--r:4deg}.fw4{--r:-5deg}
-  @media(max-width:1080px){.fw2,.fw3{display:none}.fw1{left:-12%}.fw4{right:-12%}}
+  @media(max-width:1200px){.fw2,.fw3{display:none}.fw1{left:-14%}.fw4{right:-14%}}
   @media(max-width:760px){.hero-floats{display:none}}
   .eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
   h1.hero-title{font-family:var(--hand);font-size:clamp(3.6rem,9vw,7.2rem);font-weight:700;line-height:.95;letter-spacing:0;color:var(--black);margin:0 auto 22px;max-width:12ch}
   h1.hero-title .hl{color:var(--accent)}
+  h1.hero-title .caret{display:inline-block;color:var(--accent);animation:caretBlink .9s step-end infinite;font-weight:400}
+  @keyframes caretBlink{0%,100%{opacity:1}50%{opacity:0}}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media(prefers-reduced-motion:reduce){h1.hero-title .caret{display:none}}
   .hero-sub{font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:500;color:var(--ink);max-width:600px;margin:0 auto 18px;letter-spacing:-.015em;line-height:1.4}
   .hero-founder{display:inline-block;font-size:14px;color:var(--grey);margin-bottom:34px;background:var(--off);border:1px solid var(--line);padding:8px 16px;border-radius:100px}
   .hero-founder strong{color:var(--ink);font-weight:700}
@@ -303,7 +307,7 @@
   </div>
   <div class="wrap hero-wrap">
     <p class="eyebrow reveal">UX/UI Designer &amp; Product Builder · Philippines</p>
-    <h1 class="hero-title reveal">Create with <span class="hl">Gera</span></h1>
+    <h1 class="hero-title reveal"><span class="sr-only">Create with Gera</span><span class="type-wrap" aria-hidden="true">Create with <span class="hl">Gera</span></span></h1>
     <p class="hero-sub reveal">I turn messy ideas into products people can actually use.</p>
     <div class="hero-ctas reveal">
       <a href="#contact" class="btn btn-primary">Create with Me</a>
@@ -567,6 +571,39 @@
 
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el)});
+
+  (function typewriterHero(){
+    const wrap=document.querySelector('.hero-title .type-wrap');
+    if(!wrap)return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const segments=Array.from(wrap.childNodes).map(n=>{
+      if(n.nodeType===3)return{text:n.textContent,cls:''};
+      if(n.nodeType===1)return{text:n.textContent,cls:n.className};
+      return null;
+    }).filter(Boolean);
+    wrap.innerHTML='';
+    const caret=document.createElement('span');
+    caret.className='caret';
+    caret.textContent='|';
+    wrap.appendChild(caret);
+    let si=0,ci=0;
+    function step(){
+      if(si>=segments.length)return;
+      const seg=segments[si];
+      let span=wrap.querySelector('span[data-seg="'+si+'"]');
+      if(!span){
+        span=document.createElement('span');
+        span.setAttribute('data-seg',si);
+        if(seg.cls)span.className=seg.cls;
+        wrap.insertBefore(span,caret);
+      }
+      span.textContent=seg.text.slice(0,ci+1);
+      ci++;
+      if(ci>=seg.text.length){si++;ci=0}
+      setTimeout(step,55);
+    }
+    setTimeout(step,300);
+  })();
 
   
 
