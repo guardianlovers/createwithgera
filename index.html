@@ -51,32 +51,25 @@
   .nav-cta:hover{transform:scale(1.04)}
   .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
 
-  .hero{position:relative;min-height:calc(100vh - 57px);display:flex;align-items:center;justify-content:center;padding:80px 0;text-align:center;overflow:hidden;background:radial-gradient(130% 85% at 50% 118%,#FFC97C 0%,#F3934F 20%,#D9613F 36%,#9A3C57 56%,#3B2049 76%,#1A1024 100%)}
+  .hero{position:relative;min-height:calc(100vh - 57px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:100px 0 70px;text-align:center;overflow:hidden;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%)}
   .hero-wrap{position:relative;z-index:2;padding-bottom:0}
-  .hero-sunset{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-  .hs-glow{position:absolute;border-radius:50%;filter:blur(60px);opacity:.6;will-change:transform}
-  .hs-glow1{width:520px;height:520px;top:-16%;left:-12%;background:radial-gradient(circle,rgba(59,32,73,.9),transparent 70%)}
-  .hs-glow2{width:420px;height:420px;top:-10%;right:-10%;background:radial-gradient(circle,rgba(154,60,87,.75),transparent 70%)}
-  .hs-glow3{width:380px;height:380px;bottom:-18%;left:38%;background:radial-gradient(circle,rgba(255,190,120,.6),transparent 70%)}
-  .hs-sun{position:absolute;width:340px;height:340px;left:50%;bottom:-12%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,224,168,.9) 0%,rgba(255,178,100,.5) 45%,transparent 75%);filter:blur(2px)}
-  @keyframes hsPulse{0%,100%{opacity:.45}50%{opacity:.75}}
-  .hs-glow1{animation:hsPulse 7s ease-in-out infinite}
-  .hs-glow2{animation:hsPulse 8.5s ease-in-out infinite 1.2s}
-  .hs-glow3{animation:hsPulse 6.5s ease-in-out infinite .6s}
-  .hs-sun{animation:hsPulse 9s ease-in-out infinite .3s}
-  .eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:#FFE3B8;margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
-  h1.hero-title{font-family:var(--hand);font-size:clamp(3.6rem,9vw,7.2rem);font-weight:700;line-height:.95;letter-spacing:0;color:var(--white);margin:0 auto 22px;max-width:12ch}
-  h1.hero-title .hl{color:#FFC978}
-  h1.hero-title .caret{display:inline-block;color:#FFC978;animation:caretBlink .9s step-end infinite;font-weight:400}
+  .hero-scene{position:relative;z-index:1;width:100%;display:flex;justify-content:center;pointer-events:none}
+  .hero-desk-slot{width:520px;max-width:78vw}
+  .hero-desk{filter:drop-shadow(0 40px 70px rgba(17,17,17,.16));animation:deskFloat 7s var(--ease) infinite}
+  .hero-desk img{width:100%;display:block}
+  @keyframes deskFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(-1.2deg)}}
+  @media(max-width:760px){.hero-desk-slot{width:340px}}
+  .eyebrow{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:14px;letter-spacing:.01em;text-transform:uppercase}
+  h1.hero-title{font-family:var(--hand);font-size:clamp(3.6rem,9vw,7.2rem);font-weight:700;line-height:.95;letter-spacing:0;color:var(--black);margin:0 auto 22px;max-width:12ch}
+  h1.hero-title .hl{color:var(--accent)}
+  h1.hero-title .caret{display:inline-block;color:var(--accent);animation:caretBlink .9s step-end infinite;font-weight:400}
   @keyframes caretBlink{0%,100%{opacity:1}50%{opacity:0}}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   @media(prefers-reduced-motion:reduce){h1.hero-title .caret{display:none}}
-  .hero-sub{font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:500;color:rgba(255,255,255,.92);max-width:600px;margin:0 auto 18px;letter-spacing:-.015em;line-height:1.4}
+  .hero-sub{font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:500;color:var(--ink);max-width:600px;margin:0 auto 18px;letter-spacing:-.015em;line-height:1.4}
   .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
   .hero-ctas .btn-primary{background:var(--accent-ink)}
   .hero-ctas .btn-primary:hover{background:var(--accent)}
-  .hero-ctas .btn-outline{color:#fff;border-color:rgba(255,255,255,.8)}
-  .hero-ctas .btn-outline:hover{background:#fff;color:var(--ink);border-color:#fff}
   .btn{font-size:16px;font-weight:500;padding:13px 27px;border-radius:100px;transition:transform .2s var(--ease),background .2s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:7px}
   .btn-primary{background:var(--ink);color:var(--white)}
   .btn-primary:hover{transform:scale(1.03)}
@@ -265,12 +258,6 @@
 </nav>
 
 <header class="hero" id="top">
-  <div class="hero-sunset" aria-hidden="true">
-    <div class="hs-glow hs-glow1" data-depth=".2"></div>
-    <div class="hs-glow hs-glow2" data-depth=".35"></div>
-    <div class="hs-glow hs-glow3" data-depth=".5"></div>
-    <div class="hs-sun" data-depth=".15"></div>
-  </div>
   <div class="wrap hero-wrap">
     <p class="eyebrow reveal">UX/UI Designer &amp; Product Builder · Philippines</p>
     <h1 class="hero-title reveal"><span class="sr-only">Create with Gera</span><span class="type-wrap" aria-hidden="true">Create with <span class="hl">Gera</span></span></h1>
@@ -278,6 +265,13 @@
     <div class="hero-ctas reveal">
       <a href="#contact" class="btn btn-primary">Create with Me</a>
       <a href="#work" class="btn btn-outline">See my work</a>
+    </div>
+  </div>
+  <div class="hero-scene" aria-hidden="true">
+    <div class="hero-desk-slot" data-depth=".2">
+      <div class="hero-desk">
+        <img src="assets/hero/art-desk-cutout.png" alt="" loading="eager">
+      </div>
     </div>
   </div>
 </header>
@@ -580,7 +574,7 @@
 
   (function heroParallax(){
     const hero=document.querySelector('.hero');
-    const layers=document.querySelectorAll('.hero-sunset [data-depth]');
+    const layers=document.querySelectorAll('.hero-scene [data-depth]');
     if(!hero||!layers.length)return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     let raf=null;
