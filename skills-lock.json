@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "skills": {
+    "character-sim": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/character-sim/SKILL.md",
+      "computedHash": "f1e84a6f3dec63269cbfa32d69a3162bdc29b4121ad4eb620565475ac87ec5ca"
+    },
+    "creative-research": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/creative-research/SKILL.md",
+      "computedHash": "54488d7d5270e567e997cfbd32bfc7e129dc73928fce6c6d8327c076de439d7a"
+    },
+    "creative-writing-craft": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/creative-writing-craft/SKILL.md",
+      "computedHash": "ba5a479bef04dbfd63b5adc1f4428f21748815c73c09a9e587c92cf86b2ce96d"
+    },
+    "creative-writing-modes": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/creative-writing-modes/SKILL.md",
+      "computedHash": "7caa8560f799882ceed718f3f45165f4136909d6c9031738e5cc35072cd35d14"
+    },
+    "creative-writing-muse": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/creative-writing-muse/SKILL.md",
+      "computedHash": "ff3920e16790dd9ccd8b0d1ec94a6ce107cab035813bd189acb4e2e41015f20a"
+    },
+    "grill-with-docs": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/grill-with-docs/SKILL.md",
+      "computedHash": "e91fd8eb35c39f7720ebee1784bb62a33d6def11e30b32ecd127285ce8946f6b"
+    },
+    "information-hierarchy": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/information-hierarchy/SKILL.md",
+      "computedHash": "7e686d5f714bb8a705b8af0ff4981de311e5e3f03abb560cb0337a79c7d29988"
+    },
+    "intent-modeling": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/intent-modeling/SKILL.md",
+      "computedHash": "7cd606b4d77cb95c26b6919950e101f4c55e0aa27b4e398f3cc70487fda9c625"
+    },
+    "kb-management": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/kb-management/SKILL.md",
+      "computedHash": "bc5dbb7f71aafc552af2f70065ad8e2b76a5dde617b404732f980578c8a13288"
+    },
+    "knowledge-layers": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/knowledge-layers/SKILL.md",
+      "computedHash": "5c2157c9eef94f8c3a69a5f79c90aad545638a41ee545d8eb949f61678ea200e"
+    },
+    "llm-writing": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/llm-writing/SKILL.md",
+      "computedHash": "9a8db15f0052d5ee8f4d491c2c3b4cd6e277691a5c2e4c613a3324d07213b1e3"
+    },
+    "md-validation": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/md-validation/SKILL.md",
+      "computedHash": "a9e09be50728854ba2855f2f97052a9f448115dc4327d5999cf78634e267245e"
+    },
+    "project-setup": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/project-setup/SKILL.md",
+      "computedHash": "93c636bef655e67f7f86cd2b61e26cbcc370bb8ceed04dbed76d4e29f2bfc355"
+    },
+    "qi-layer": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/qi-layer/SKILL.md",
+      "computedHash": "f23166227c399969ddccc6ef2b895b08d3875db627b0ae27cc70cf944e988bc5"
+    },
+    "reader-sim": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/reader-sim/SKILL.md",
+      "computedHash": "273c725c1b9fec427262742b34a9059e4f0cee6783da4f1d386b13b03b88e1db"
+    },
+    "reflect": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/reflect/SKILL.md",
+      "computedHash": "4da5f0d29c72ac3f6771ce101ba59d51d1bfaf54632f2d35d41f89a9989c9702"
+    },
+    "shared-dao": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/shared-dao/SKILL.md",
+      "computedHash": "98f4cf1e74659fd307d605dd62f38b5dc016452f5052d45275b79ea925812db9"
+    },
+    "story-memory": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-memory/SKILL.md",
+      "computedHash": "8e30bbc8b193aa8882fed5c89fc39bce83d48210121c9e95093c257577a2bfa7"
+    },
+    "story-planning": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-planning/SKILL.md",
+      "computedHash": "d07a402193c2ce75a3182affc69d08e0070c6dc467fb421c19a1de9a8e9633c1"
+    },
+    "story-review": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-review/SKILL.md",
+      "computedHash": "f920d5b382a0baf9d3a9cbceb5d5dcb1352de5414a7860921b4f4c39a8a9b252"
+    },
+    "structured-artifact": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/structured-artifact/SKILL.md",
+      "computedHash": "f4728589b231683f2addb6e2344fc7bce229d0b7f82c8300c85ef78a6d6ee654"
+    },
+    "writing-principles": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/writing-principles/SKILL.md",
+      "computedHash": "667b86ba72d1f1160024fe973409f34ca0c5d4a58e83e7a7aec40dd144a47fcc"
+    },
+    "writing-staffing": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/writing-staffing/SKILL.md",
+      "computedHash": "1174315a0fb003b43b126864a8ead4c5f51d6e5c09bcaf619c00b0be8d5954ec"
+    },
+    "zoom-out": {
+      "source": "haowjy/creative-writing-skills",
+      "sourceType": "github",
+      "skillPath": "cw/skills/zoom-out/SKILL.md",
+      "computedHash": "e202789899004e85a436c4970410507c70de461bafeff4eea81ac099eefe5160"
+    }
+  }
+}
