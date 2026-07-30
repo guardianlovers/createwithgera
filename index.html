@@ -28,7 +28,7 @@
   img{max-width:100%;display:block}
   .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
 
-  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:200;transition:width .1s linear}
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--accent);z-index:200;transform-origin:0 0;transform:scaleX(0);transition:transform .1s linear}
 
   nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line-2)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
@@ -119,11 +119,6 @@
   .ccard:hover .ccard-top img{transform:scale(1.04)}
   .ccard-index{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink);background:rgba(255,255,255,.88);padding:4px 9px;border-radius:100px;z-index:2}
   .ccard-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);color:#fff;padding:5px 11px;border-radius:100px}
-  .cmock{width:76%;background:#fff;border:1px solid var(--line);border-radius:12px 12px 0 0;box-shadow:0 16px 32px rgba(0,0,0,.1);padding:15px;transform:translateY(24px)}
-  .cmock .cb{display:flex;gap:5px;margin-bottom:12px}
-  .cmock .cb i{width:8px;height:8px;border-radius:50%;background:var(--line)}
-  .cmock .cl{height:9px;border-radius:4px;background:var(--line-2);margin-bottom:8px}
-  .cmock .cl.a{width:45%;background:var(--accent);height:10px}.cmock .cl.b{width:88%}.cmock .cl.c{width:66%}
   .ccard-body{padding:18px 20px 20px}
   .ccard-tags{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
   .wtag{font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:var(--off);border:1px solid var(--line);color:var(--grey)}
@@ -225,7 +220,12 @@
   }
   @media(max-width:640px){
     .wrap{padding:0 24px}
-    .nav-links{display:none}.menu-btn{display:block}
+    .nav-links{position:absolute;top:100%;left:0;right:0;display:flex;flex-direction:column;align-items:stretch;gap:2px;padding:10px 24px 20px;background:rgba(255,255,255,.98);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line-2);box-shadow:0 16px 32px rgba(17,17,17,.1);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s linear .2s}
+    .nav-links.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+    .nav-links a{padding:12px 4px}
+    .nav-links .nav-cta{margin-top:6px;justify-content:center}
+    .menu-btn{display:block}
+    .menu-btn[aria-expanded="true"]{color:var(--accent)}
     .services-grid,.proc-grid,.field-row{grid-template-columns:1fr}
     section{padding:80px 0}.hero{min-height:auto;padding:80px 0 72px}
     .ccard{flex:0 0 84%}
@@ -239,14 +239,14 @@
 <nav>
   <div class="wrap nav-inner">
     <a href="#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Create with Gera</a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#top">Home</a>
       <a href="projects.html">Projects</a>
       <a href="highlights.html">Highlights</a>
       <a href="resume.html">Resume</a>
       <a href="#contact" class="nav-cta">Create with Me</a>
     </div>
-    <button class="menu-btn">☰</button>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
 </nav>
 
@@ -519,11 +519,24 @@
 
 <script>
   const prog=document.getElementById('progress');
-  const onScroll=()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%'};
+  const onScroll=()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.transform='scaleX('+sc+')'};
   document.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el)});
+
+  (function mobileMenu(){
+    const btn=document.querySelector('.menu-btn');
+    const nav=document.querySelector('.nav-links');
+    if(!btn||!nav)return;
+    function close(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.textContent='☰'}
+    function open(){nav.classList.add('open');btn.setAttribute('aria-expanded','true');btn.textContent='✕'}
+    btn.addEventListener('click',()=>{nav.classList.contains('open')?close():open()});
+    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+    document.addEventListener('click',e=>{if(nav.classList.contains('open')&&!nav.contains(e.target)&&!btn.contains(e.target))close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+    window.addEventListener('resize',()=>{if(window.innerWidth>640)close()});
+  })();
 
   (function typewriterHero(){
     const wrap=document.querySelector('.hero-title .type-wrap');
