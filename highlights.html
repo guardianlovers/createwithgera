@@ -30,6 +30,15 @@
 
   #progress{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--accent);z-index:200;transform-origin:0 0;transform:scaleX(0);transition:transform .1s linear}
 
+  #loader{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:var(--white);opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  #loader.hide{opacity:0;transform:translateY(-16px);pointer-events:none}
+  .loader-mark{width:34px;height:34px;animation:loaderPulse 1.3s var(--ease) infinite}
+  @keyframes loaderPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.86);opacity:.55}}
+  .loader-bar{width:96px;height:2px;border-radius:100px;background:var(--line);overflow:hidden}
+  .loader-bar i{display:block;height:100%;width:36%;background:var(--accent);border-radius:100px;animation:loaderSlide 1.05s ease-in-out infinite}
+  @keyframes loaderSlide{0%{transform:translateX(-140%)}100%{transform:translateX(380%)}}
+  body.loading{overflow:hidden}
+
   nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line-2)}
   .nav-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px}
   .logo{font-family:var(--hand);font-size:24px;font-weight:700;letter-spacing:0;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
@@ -92,6 +101,11 @@
 </style>
 </head>
 <body>
+<noscript><style>#loader{display:none}</style></noscript>
+<div id="loader" aria-hidden="true">
+  <img src="assets/logo.svg" alt="" class="loader-mark">
+  <div class="loader-bar"><i></i></div>
+</div>
 <div id="progress"></div>
 
 <nav>
