@@ -189,6 +189,20 @@
   .field input,.field select,.field textarea{width:100%;font-family:var(--sans);font-size:16px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--white);color:var(--ink);transition:border-color .2s,box-shadow .2s}
   .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-wash)}
   .field textarea{resize:vertical;min-height:110px}
+  .csel{position:relative}
+  .csel-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--sans);font-size:16px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--white);color:var(--ink);cursor:pointer;transition:border-color .2s,box-shadow .2s;text-align:left}
+  .csel-trigger:hover{border-color:var(--grey-2)}
+  .csel-trigger:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-wash)}
+  .csel.open .csel-trigger{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-wash)}
+  .csel-value{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .csel-arrow{flex-shrink:0;color:var(--grey);transition:transform .2s var(--ease)}
+  .csel.open .csel-arrow{transform:rotate(180deg);color:var(--accent)}
+  .csel-native{position:absolute;inset:0;opacity:0;pointer-events:none}
+  .csel-menu{list-style:none;margin:0;position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:20;background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 44px rgba(0,0,0,.12);padding:6px;max-height:240px;overflow-y:auto;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-6px);transition:opacity .15s var(--ease),transform .15s var(--ease),visibility 0s linear .15s}
+  .csel.open .csel-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);transition:opacity .15s var(--ease),transform .15s var(--ease)}
+  .csel-option{padding:10px 12px;border-radius:8px;font-size:15px;color:var(--ink);cursor:pointer;transition:background .15s,color .15s}
+  .csel-option:hover,.csel-option.is-selected{background:var(--accent-wash);color:var(--accent-ink)}
+  .csel-option.is-selected{font-weight:600}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .form .btn-primary{margin-top:8px;justify-content:center;width:100%}
   .form-status{min-height:20px;margin-top:4px;font-size:14px;font-weight:600;text-align:center}
@@ -485,8 +499,8 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="reveal">
-      <h2>Let's make yours <em>usable.</em></h2>
-      <p class="sub">Share your project details and I'll recommend the right design or build approach.</p>
+      <h2>Ready to create something <em>better?</em></h2>
+      <p class="sub">Share your project, goals, and challenges, and I'll help shape the right approach.</p>
     </div>
     <form class="form reveal" id="contactForm" novalidate>
       <div class="field-row"><div class="field"><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" placeholder="Jane Cruz" required></div><div class="field"><label for="cf-email">Email address</label><input id="cf-email" name="email" type="email" placeholder="you@email.com" required></div></div>
@@ -702,6 +716,7 @@
       a.addEventListener('click',function(){
         if(!sel)return;const v=a.getAttribute('data-svc');
         [].forEach.call(sel.options,function(o){if(o.value===v||o.text===v){sel.value=o.value}});
+        sel.dispatchEvent(new Event('change',{bubbles:true}));
       });
     });
   })();
@@ -719,6 +734,96 @@
     function updatePlaceholder(){valueInput.placeholder=placeholders[methodSelect.value]||''}
     methodSelect.addEventListener('change',updatePlaceholder);
     updatePlaceholder();
+  })();
+
+  (function(){
+    function enhanceSelect(select){
+      const wrap=document.createElement('div');
+      wrap.className='csel';
+      select.parentNode.insertBefore(wrap,select);
+      wrap.appendChild(select);
+      select.classList.add('csel-native');
+      select.setAttribute('tabindex','-1');
+      select.setAttribute('aria-hidden','true');
+
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='csel-trigger';
+      const originalId=select.id;
+      if(originalId){
+        btn.id=originalId+'-trigger';
+        const label=document.querySelector('label[for="'+originalId+'"]');
+        if(label)label.setAttribute('for',btn.id);
+      }
+      btn.setAttribute('aria-haspopup','listbox');
+      btn.setAttribute('aria-expanded','false');
+      btn.innerHTML='<span class="csel-value"></span><svg class="csel-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+      const valueSpan=btn.querySelector('.csel-value');
+      wrap.insertBefore(btn,select);
+
+      const menu=document.createElement('ul');
+      menu.className='csel-menu';
+      menu.setAttribute('role','listbox');
+      const menuId='csel-menu-'+Math.random().toString(36).slice(2,8);
+      menu.id=menuId;
+      btn.setAttribute('aria-controls',menuId);
+      wrap.appendChild(menu);
+
+      function buildOptions(){
+        menu.innerHTML='';
+        Array.prototype.forEach.call(select.options,function(opt,i){
+          const li=document.createElement('li');
+          li.className='csel-option';
+          li.setAttribute('role','option');
+          li.textContent=opt.textContent;
+          li.addEventListener('click',function(){selectOption(i)});
+          menu.appendChild(li);
+        });
+      }
+      function syncTrigger(){
+        const opt=select.options[select.selectedIndex];
+        valueSpan.textContent=opt?opt.textContent:'';
+        Array.prototype.forEach.call(menu.children,function(li,i){
+          const on=i===select.selectedIndex;
+          li.classList.toggle('is-selected',on);
+          li.setAttribute('aria-selected',on?'true':'false');
+        });
+      }
+      function selectOption(i){
+        select.selectedIndex=i;
+        select.dispatchEvent(new Event('change',{bubbles:true}));
+        syncTrigger();
+        closeMenu();
+        btn.focus();
+      }
+      function openMenu(){
+        wrap.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        const active=menu.querySelector('.is-selected');
+        if(active)active.scrollIntoView({block:'nearest'});
+      }
+      function closeMenu(){
+        wrap.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+      }
+      btn.addEventListener('click',function(e){
+        e.stopPropagation();
+        if(wrap.classList.contains('open'))closeMenu();else openMenu();
+      });
+      btn.addEventListener('keydown',function(e){
+        const max=select.options.length-1;
+        if(e.key==='ArrowDown'){e.preventDefault();wrap.classList.contains('open')?selectOption(Math.min(max,select.selectedIndex+1)):openMenu();}
+        else if(e.key==='ArrowUp'){e.preventDefault();wrap.classList.contains('open')?selectOption(Math.max(0,select.selectedIndex-1)):openMenu();}
+        else if(e.key==='Enter'||e.key===' '){e.preventDefault();wrap.classList.contains('open')?closeMenu():openMenu();}
+        else if(e.key==='Escape'){closeMenu();}
+      });
+      document.addEventListener('click',function(e){if(!wrap.contains(e.target))closeMenu();});
+      select.addEventListener('change',syncTrigger);
+
+      buildOptions();
+      syncTrigger();
+    }
+    document.querySelectorAll('.form .field select').forEach(enhanceSelect);
   })();
 
   (function(){
