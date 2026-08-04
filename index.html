@@ -707,6 +707,21 @@
   })();
 
   (function(){
+    const methodSelect=document.getElementById('cf-contact-method');
+    const valueInput=document.getElementById('cf-contact-value');
+    if(!methodSelect||!valueInput)return;
+    const placeholders={
+      Email:'e.g. you@email.com',
+      WhatsApp:'e.g. +63 9XX XXX XXXX',
+      Viber:'e.g. +63 9XX XXX XXXX',
+      Messenger:'e.g. facebook.com/yourname'
+    };
+    function updatePlaceholder(){valueInput.placeholder=placeholders[methodSelect.value]||''}
+    methodSelect.addEventListener('change',updatePlaceholder);
+    updatePlaceholder();
+  })();
+
+  (function(){
     const form=document.getElementById('contactForm');
     const status=document.getElementById('formStatus');
     if(!form||!status)return;
