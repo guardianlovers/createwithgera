@@ -492,6 +492,7 @@
       <div class="field-row"><div class="field"><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" placeholder="Jane Cruz" required></div><div class="field"><label for="cf-email">Email address</label><input id="cf-email" name="email" type="email" placeholder="you@email.com" required></div></div>
       <div class="field-row"><div class="field"><label for="cf-company">Company / Brand</label><input id="cf-company" name="company" type="text" placeholder="Brand name"></div><div class="field"><label for="cf-timeline">Timeline</label><input id="cf-timeline" name="timeline" type="text" placeholder="e.g. 2 months"></div></div>
       <div class="field-row"><div class="field"><label for="projType">Project type</label><select id="projType" name="projectType"><option>Landing Page Design</option><option>Website Design</option><option>App Design</option></select></div><div class="field"><label for="cf-budget">Budget range</label><select id="cf-budget" name="budget"><option>₱8,000 – ₱15,000</option><option>₱15,000 – ₱30,000</option><option>₱30,000+</option></select></div></div>
+      <div class="field-row"><div class="field"><label for="cf-contact-method">Preferred contact method</label><select id="cf-contact-method" name="contactMethod"><option>Email</option><option>WhatsApp</option><option>Viber</option><option>Messenger</option></select></div><div class="field"><label for="cf-contact-value">Your number / username</label><input id="cf-contact-value" name="contactValue" type="text" placeholder="e.g. +63 9XX XXX XXXX or @username"></div></div>
       <div class="field"><label for="cf-message">Project description</label><textarea id="cf-message" name="message" placeholder="Tell me about what you're building and who it's for." required></textarea></div>
       <button type="submit" class="btn btn-primary">Send project inquiry</button>
       <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
@@ -725,6 +726,7 @@
         d.timeline?'Timeline: '+d.timeline:'',
         'Project type: '+d.projectType,
         'Budget range: '+d.budget,
+        d.contactValue?'Preferred contact: '+d.contactMethod+' — '+d.contactValue:'',
         '',
         d.message
       ].filter(Boolean);
