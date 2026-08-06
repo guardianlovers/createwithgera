@@ -50,6 +50,14 @@
   .nav-cta:hover{background:var(--accent)}
   .nav-cta:hover{transform:scale(1.04)}
   .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
+  .nav-dropdown{position:relative}
+  .nav-dropdown-toggle{display:inline-flex;align-items:center;gap:5px}
+  .nav-caret{width:8px;height:8px;flex-shrink:0;transition:transform .2s var(--ease)}
+  .nav-dropdown:hover .nav-caret,.nav-dropdown:focus-within .nav-caret{transform:rotate(180deg)}
+  .nav-dropdown-menu{position:absolute;top:100%;left:0;margin-top:16px;min-width:190px;background:var(--white);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 16px 32px rgba(17,17,17,.12);padding:6px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s linear .2s}
+  .nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;transform:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+  .nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:8px;font-size:14px;opacity:.78!important;white-space:nowrap}
+  .nav-dropdown-menu a:hover{background:var(--off);opacity:1!important}
 
   .hero{position:relative;min-height:calc(100vh - 57px);display:flex;align-items:center;justify-content:center;padding:80px 0;text-align:center;overflow:hidden;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%)}
   .hero-photo{position:absolute;inset:0;z-index:0;display:none;background:var(--off) center center/cover no-repeat;animation:heroZoom 26s ease-in-out infinite alternate}
@@ -240,6 +248,9 @@
     .nav-links.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
     .nav-links a{padding:12px 4px}
     .nav-links .nav-cta{margin-top:6px;justify-content:center}
+    .nav-dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;transition:none;box-shadow:none;border:none;padding:0 0 2px 16px;margin-top:0;background:transparent}
+    .nav-dropdown-menu a{padding:8px 4px;font-size:13.5px;opacity:.6!important}
+    .nav-caret{display:none}
     .menu-btn{display:block}
     .menu-btn[aria-expanded="true"]{color:var(--accent)}
     .services-grid,.proc-grid,.field-row{grid-template-columns:1fr}
@@ -262,7 +273,14 @@
     <a href="#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Create with Gera</a>
     <div class="nav-links" id="navLinks">
       <a href="#top">Home</a>
-      <a href="projects.html">Projects</a>
+      <div class="nav-dropdown">
+        <a href="projects.html" class="nav-dropdown-toggle">Projects <svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="projects.html#web-design">Web Design</a>
+          <a href="projects.html#graphic-design">Graphic Designs</a>
+          <a href="projects.html#video-editing">Video Editing</a>
+        </div>
+      </div>
       <a href="highlights.html">Highlights</a>
       <a href="resume.html">Resume</a>
       <a href="#contact" class="nav-cta">Create</a>
@@ -309,7 +327,7 @@
       </div>
     </div>
     <div class="about-caps reveal">
-      <div class="cap-block"><h4>Design</h4><div class="cap-chips"><span class="chip">Figma</span><span class="chip">Wireframing</span><span class="chip">UX Flows</span><span class="chip">UI / Dashboard</span></div></div>
+      <div class="cap-block"><h4>Design</h4><div class="cap-chips"><span class="chip">Figma</span><span class="chip">Wireframing</span><span class="chip">UX Flows</span><span class="chip">UI / Dashboard</span><span class="chip">Adobe InDesign</span><span class="chip">Photoshop</span><span class="chip">Lightroom</span><span class="chip">Procreate</span><span class="chip">Canva</span></div></div>
       <div class="cap-block"><h4>Code</h4><div class="cap-chips"><span class="chip">React</span><span class="chip">HTML/CSS/JS</span><span class="chip">PostgreSQL</span><span class="chip">GitHub</span></div></div>
       <div class="cap-block"><h4>Product Strategy</h4><div class="cap-chips"><span class="chip">MVP Planning</span><span class="chip">Feature Mapping</span><span class="chip">Journey Mapping</span><span class="chip">Launch Strategy</span></div></div>
     </div>
@@ -326,11 +344,6 @@
             <span class="sec-num">02 — Selected Work</span>
             <h2 class="sec-title">Designed to solve.</h2>
             <p class="sec-intro">Nonprofit, client, and product work — each with a clear job and a live result.</p>
-          </div>
-          <div class="carousel-nav reveal">
-            <a href="projects.html" class="link-arrow">See all projects →</a>
-            <button class="cbtn" id="prevBtn" aria-label="Previous">←</button>
-            <button class="cbtn" id="nextBtn" aria-label="Next">→</button>
           </div>
         </div>
         <div class="work-viewport" id="workViewport">
@@ -661,8 +674,8 @@
       const x=-(p*maxX);
       car.style.transform='translate3d('+x+'px,0,0)';
       if(bar)bar.style.width=(p*100)+'%';
-      prev.disabled=p<=0.001;
-      next.disabled=p>=0.999;
+      if(prev)prev.disabled=p<=0.001;
+      if(next)next.disabled=p>=0.999;
     }
 
     // Arrow buttons: jump the page scroll so the horizontal position shifts one card.
@@ -676,8 +689,8 @@
       const perCard=(cardW/ (maxX||1))*total;
       window.scrollBy({top:dir*perCard,behavior:'smooth'});
     }
-    prev.addEventListener('click',()=>nudge(-1));
-    next.addEventListener('click',()=>nudge(1));
+    if(prev)prev.addEventListener('click',()=>nudge(-1));
+    if(next)next.addEventListener('click',()=>nudge(1));
 
     document.addEventListener('scroll',onScroll,{passive:true});
     window.addEventListener('resize',measure);

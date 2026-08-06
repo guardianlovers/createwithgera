@@ -49,6 +49,14 @@
   .nav-cta{font-size:14px;font-weight:500;background:var(--accent-ink);color:var(--white)!important;padding:8px 17px;border-radius:100px;opacity:1!important;transition:transform .2s,background .2s}
   .nav-cta:hover{background:var(--accent)}
   .menu-btn{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink)}
+  .nav-dropdown{position:relative}
+  .nav-dropdown-toggle{display:inline-flex;align-items:center;gap:5px}
+  .nav-caret{width:8px;height:8px;flex-shrink:0;transition:transform .2s var(--ease)}
+  .nav-dropdown:hover .nav-caret,.nav-dropdown:focus-within .nav-caret{transform:rotate(180deg)}
+  .nav-dropdown-menu{position:absolute;top:100%;left:0;margin-top:16px;min-width:190px;background:var(--white);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 16px 32px rgba(17,17,17,.12);padding:6px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s linear .2s}
+  .nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;transform:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+  .nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:8px;font-size:14px;opacity:.78!important;white-space:nowrap}
+  .nav-dropdown-menu a:hover{background:var(--off);opacity:1!important}
 
   .btn{font-size:16px;font-weight:500;padding:13px 27px;border-radius:100px;transition:transform .2s var(--ease),background .2s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:7px}
   .btn-primary{background:var(--ink);color:var(--white)}
@@ -68,6 +76,12 @@
   .all-hero{padding:150px 0 60px;background:radial-gradient(120% 90% at 50% -10%,var(--off) 0%,var(--white) 42%,var(--white) 100%);border-bottom:1px solid var(--line)}
   .all-hero .sec-head{margin-bottom:0}
 
+  .proj-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px}
+  .filter-btn{font-family:var(--sans);font-size:14px;font-weight:600;padding:9px 18px;border-radius:100px;border:1px solid var(--line);background:var(--white);color:var(--grey);cursor:pointer;transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s}
+  .filter-btn:hover{border-color:var(--ink);color:var(--ink)}
+  .filter-btn.active{background:var(--ink);color:var(--white);border-color:var(--ink)}
+  .proj-media.placeholder-media{display:flex;align-items:center;justify-content:center;background:var(--off)}
+  .placeholder-label{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--grey-2);text-align:center;padding:0 20px}
   .proj-list{display:flex;flex-direction:column}
   .proj-entry{display:grid;grid-template-columns:380px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid var(--line)}
   .proj-entry:first-child{padding-top:0}
@@ -96,6 +110,9 @@
     .nav-links.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
     .nav-links a{padding:12px 4px}
     .nav-links .nav-cta{margin-top:6px;justify-content:center}
+    .nav-dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;transition:none;box-shadow:none;border:none;padding:0 0 2px 16px;margin-top:0;background:transparent}
+    .nav-dropdown-menu a{padding:8px 4px;font-size:13.5px;opacity:.6!important}
+    .nav-caret{display:none}
     .menu-btn{display:block}
     .menu-btn[aria-expanded="true"]{color:var(--accent)}
     section{padding:80px 0}.all-hero{padding:96px 0 48px}
@@ -131,7 +148,14 @@
     <a href="index.html#top" class="logo"><img src="assets/logo.svg" alt="" class="logo-mark">Create with Gera</a>
     <div class="nav-links" id="navLinks">
       <a href="index.html#top">Home</a>
-      <a href="projects.html" class="active">Projects</a>
+      <div class="nav-dropdown">
+        <a href="projects.html" class="nav-dropdown-toggle active">Projects <svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="projects.html#web-design">Web Design</a>
+          <a href="projects.html#graphic-design">Graphic Designs</a>
+          <a href="projects.html#video-editing">Video Editing</a>
+        </div>
+      </div>
       <a href="highlights.html">Highlights</a>
       <a href="resume.html">Resume</a>
       <a href="index.html#contact" class="nav-cta">Create</a>
@@ -145,16 +169,22 @@
     <div class="sec-head reveal">
       <span class="sec-num">All Projects</span>
       <h1 class="sec-title">Every project, in full.</h1>
-      <p class="sec-intro">The problem, the approach, and the outcome for each piece of work — nonprofit, client, and product.</p>
+      <p class="sec-intro">The problem, the approach, and the outcome for each piece of work — web design, graphic design, and video editing.</p>
     </div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
+    <div class="proj-filters reveal" role="tablist" aria-label="Filter projects by category">
+      <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button type="button" class="filter-btn" data-filter="web-design" role="tab" aria-selected="false">Web Design</button>
+      <button type="button" class="filter-btn" data-filter="graphic-design" role="tab" aria-selected="false">Graphic Designs</button>
+      <button type="button" class="filter-btn" data-filter="video-editing" role="tab" aria-selected="false">Video Editing</button>
+    </div>
     <div class="proj-list">
 
-      <div class="proj-entry reveal">
+      <div class="proj-entry reveal" data-category="web-design">
         <a href="case-ourspace.html" class="proj-media"><span class="proj-badge">Case study</span><img src="assets/selected-projects/ourspace.png" alt="OurSpace screenshot"></a>
         <div class="proj-body">
           <span class="proj-index">01 / 07 — Product</span>
@@ -169,7 +199,7 @@
         </div>
       </div>
 
-      <div class="proj-entry reveal">
+      <div class="proj-entry reveal" data-category="web-design">
         <div class="proj-media"><img src="assets/selected-projects/sikat-aurora.png" alt="Síkat-Aurora Inc. screenshot"></div>
         <div class="proj-body">
           <span class="proj-index">02 / 07 — Nonprofit</span>
@@ -183,7 +213,7 @@
         </div>
       </div>
 
-      <div class="proj-entry reveal">
+      <div class="proj-entry reveal" data-category="web-design">
         <div class="proj-media"><img src="assets/selected-projects/learnwithaaya.png" alt="Learn with Teacher Aiah screenshot"></div>
         <div class="proj-body">
           <span class="proj-index">03 / 07 — Landing page</span>
@@ -197,7 +227,7 @@
         </div>
       </div>
 
-      <div class="proj-entry reveal">
+      <div class="proj-entry reveal" data-category="web-design">
         <div class="proj-media"><img src="assets/selected-projects/abenson-apple-store.png" alt="Abenson Apple Store screenshot"></div>
         <div class="proj-body">
           <span class="proj-index">04 / 07 — E-commerce</span>
@@ -211,7 +241,7 @@
         </div>
       </div>
 
-      <div class="proj-entry reveal">
+      <div class="proj-entry reveal" data-category="web-design">
         <div class="proj-media"><img src="assets/selected-projects/abenson-sleeppage.png" alt="Abenson Sleep Page screenshot"></div>
         <div class="proj-body">
           <span class="proj-index">05 / 07 — E-commerce</span>
@@ -225,7 +255,7 @@
         </div>
       </div>
 
-      <div class="proj-entry reveal">
+      <div class="proj-entry reveal" data-category="web-design">
         <div class="proj-media"><img src="assets/selected-projects/why-abz.png" alt="ABZ — Why ABZ screenshot"></div>
         <div class="proj-body">
           <span class="proj-index">06 / 07 — E-commerce</span>
@@ -239,7 +269,7 @@
         </div>
       </div>
 
-      <div class="proj-entry reveal">
+      <div class="proj-entry reveal" data-category="web-design">
         <div class="proj-media"><span class="proj-badge">Prototype</span><img src="assets/selected-projects/google-review-automation.png" alt="Google Review Automation screenshot"></div>
         <div class="proj-body">
           <span class="proj-index">07 / 07 — Internal tool</span>
@@ -250,6 +280,24 @@
           <div class="proj-links">
             <a href="https://www.figma.com/proto/giiJkOmtjZv0q6H3NR2nnm/Google-Review-Automation?node-id=691-22817&p=f" target="_blank" rel="noopener" class="proj-btn primary">View prototype</a>
           </div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal" data-category="graphic-design">
+        <div class="proj-media placeholder-media"><span class="proj-badge">Coming soon</span><span class="placeholder-label">Graphic Design</span></div>
+        <div class="proj-body">
+          <span class="proj-index">Graphic Design</span>
+          <h2>New work in progress</h2>
+          <div class="proj-block"><h4>What's coming</h4><p>Social media graphics, brand visuals, and print pieces — being added here soon.</p></div>
+        </div>
+      </div>
+
+      <div class="proj-entry reveal" data-category="video-editing">
+        <div class="proj-media placeholder-media"><span class="proj-badge">Coming soon</span><span class="placeholder-label">Video Editing</span></div>
+        <div class="proj-body">
+          <span class="proj-index">Video Editing</span>
+          <h2>New work in progress</h2>
+          <div class="proj-block"><h4>What's coming</h4><p>Edited videos and reels — being added here soon.</p></div>
         </div>
       </div>
 
@@ -317,6 +365,32 @@
     document.addEventListener('click',e=>{if(nav.classList.contains('open')&&!nav.contains(e.target)&&!btn.contains(e.target))close()});
     document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
     window.addEventListener('resize',()=>{if(window.innerWidth>640)close()});
+  })();
+
+  (function projectFilter(){
+    const buttons=document.querySelectorAll('.filter-btn');
+    const entries=document.querySelectorAll('.proj-entry');
+    const valid=['web-design','graphic-design','video-editing'];
+    if(!buttons.length||!entries.length)return;
+    function applyFilter(cat){
+      entries.forEach(entry=>{
+        const show=cat==='all'||entry.dataset.category===cat;
+        entry.style.display=show?'':'none';
+        if(show)entry.classList.add('in');
+      });
+      buttons.forEach(b=>{
+        const active=b.dataset.filter===cat;
+        b.classList.toggle('active',active);
+        b.setAttribute('aria-selected',active?'true':'false');
+      });
+    }
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      applyFilter(b.dataset.filter);
+      const url=b.dataset.filter==='all'?location.pathname:location.pathname+'#'+b.dataset.filter;
+      history.replaceState(null,'',url);
+    }));
+    const hash=location.hash.replace('#','');
+    applyFilter(valid.includes(hash)?hash:'all');
   })();
 </script>
 </body>
