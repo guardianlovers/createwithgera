@@ -345,11 +345,6 @@
             <h2 class="sec-title">Designed to solve.</h2>
             <p class="sec-intro">Nonprofit, client, and product work — each with a clear job and a live result.</p>
           </div>
-          <div class="carousel-nav reveal">
-            <a href="projects.html" class="link-arrow">See all projects →</a>
-            <button class="cbtn" id="prevBtn" aria-label="Previous">←</button>
-            <button class="cbtn" id="nextBtn" aria-label="Next">→</button>
-          </div>
         </div>
         <div class="work-viewport" id="workViewport">
           <div class="carousel" id="carousel" tabindex="0" aria-label="Project carousel">
@@ -679,8 +674,8 @@
       const x=-(p*maxX);
       car.style.transform='translate3d('+x+'px,0,0)';
       if(bar)bar.style.width=(p*100)+'%';
-      prev.disabled=p<=0.001;
-      next.disabled=p>=0.999;
+      if(prev)prev.disabled=p<=0.001;
+      if(next)next.disabled=p>=0.999;
     }
 
     // Arrow buttons: jump the page scroll so the horizontal position shifts one card.
@@ -694,8 +689,8 @@
       const perCard=(cardW/ (maxX||1))*total;
       window.scrollBy({top:dir*perCard,behavior:'smooth'});
     }
-    prev.addEventListener('click',()=>nudge(-1));
-    next.addEventListener('click',()=>nudge(1));
+    if(prev)prev.addEventListener('click',()=>nudge(-1));
+    if(next)next.addEventListener('click',()=>nudge(1));
 
     document.addEventListener('scroll',onScroll,{passive:true});
     window.addEventListener('resize',measure);
