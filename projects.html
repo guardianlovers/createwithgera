@@ -95,7 +95,7 @@
   .proj-block h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-mute);margin-bottom:6px}
   .proj-block p{font-size:15px;color:var(--grey);line-height:1.6}
   .proj-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
-  .proj-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:600;padding:11px 20px;border-radius:100px;transition:transform .2s var(--ease),background .2s,color .2s;border:1px solid var(--ink)}
+  .proj-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;font-size:14px;font-weight:600;padding:11px 20px;border-radius:100px;transition:transform .2s var(--ease),background .2s,color .2s;border:1px solid var(--ink);cursor:pointer}
   .proj-btn.primary{background:var(--ink);color:#fff}
   .proj-btn.primary:hover{transform:translateY(-2px)}
   .proj-btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
@@ -144,12 +144,20 @@
   .lightbox-prev{top:50%;left:20px;transform:translateY(-50%)}
   .lightbox-next{top:50%;right:20px;transform:translateY(-50%)}
   .lightbox-prev:hover,.lightbox-next:hover{transform:translateY(-50%) scale(1.06)}
-  .lightbox-count{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;color:rgba(255,255,255,.85);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:100px}
+  .lightbox-footer{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;max-width:92vw}
+  .lightbox-thumbs{display:flex;gap:8px;overflow-x:auto;max-width:92vw;padding:4px;scrollbar-width:none}
+  .lightbox-thumbs[hidden]{display:none}
+  .lightbox-thumbs::-webkit-scrollbar{display:none}
+  .lightbox-thumbs img{width:52px;height:52px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.5;border:2px solid transparent;flex-shrink:0;transition:opacity .2s,border-color .2s}
+  .lightbox-thumbs img:hover{opacity:.85}
+  .lightbox-thumbs img.active{opacity:1;border-color:#fff}
+  .lightbox-count{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;color:rgba(255,255,255,.85);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:100px}
   @media(max-width:640px){
     .lightbox{padding:24px 16px}
     .lightbox-prev{left:8px}
     .lightbox-next{right:8px}
     .lightbox-close{top:12px;right:12px}
+    .lightbox-thumbs img{width:40px;height:40px}
   }
 </style>
 </head>
@@ -166,7 +174,10 @@
   <button type="button" class="lightbox-prev" aria-label="Previous image">‹</button>
   <img class="lightbox-img" alt="">
   <button type="button" class="lightbox-next" aria-label="Next image">›</button>
-  <div class="lightbox-count"></div>
+  <div class="lightbox-footer">
+    <div class="lightbox-thumbs" hidden></div>
+    <div class="lightbox-count"></div>
+  </div>
 </div>
 
 <nav>
@@ -305,7 +316,7 @@
           <span class="proj-index">01 / 10 — Cafe menu &amp; branding</span>
           <h2>Roeb's Cup</h2>
           <div class="proj-block"><p>Full menu design and cup branding for Roeb's Cup — coffee, fruit soda, matcha, and snack menus laid out on one branded sheet.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/Roebs%20Cup/Roeb_s%20Cup%20Project.png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -315,7 +326,7 @@
           <span class="proj-index">02 / 10 — Logo design</span>
           <h2>Logos</h2>
           <div class="proj-block"><p>A set of logo marks designed for different clients and events, including Síkat-Aurora Inc. and The Voice of the Sierra.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/Logos/SIKAT%20-%20AURORA%20LOGO%20(WITHOUT%20BACKGROUND).png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -325,7 +336,7 @@
           <span class="proj-index">03 / 10 — E-commerce promotions</span>
           <h2>LoveShopping.ph</h2>
           <div class="proj-block"><p>Voucher graphics and product deal ads for LoveShopping.ph's Lazada and Shopee storefronts — pricing and voucher mechanics built for quick scrolling.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/Love%20Shopping/BUDOL%20DEALS%20FORMAT%20(2).png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -335,7 +346,7 @@
           <span class="proj-index">04 / 10 — Social media content</span>
           <h2>Parlax Systems</h2>
           <div class="proj-block"><p>Social media carousels and static posts for a business advisory brand, pairing short motivational copy with clean typographic layouts.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/Parlax%20Systems/embrace%20growth%20mindset.png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -345,7 +356,7 @@
           <span class="proj-index">05 / 10 — Social media promo</span>
           <h2>1697 Bubble Tea House</h2>
           <div class="proj-block"><p>An Instagram-style announcement graphic introducing a new drink lineup for 1697 Bubble Tea House.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/Bubble%20Tea%20House%20Project/Pubmat%201.png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -355,7 +366,7 @@
           <span class="proj-index">06 / 10 — Product ads</span>
           <h2>Urbantech</h2>
           <div class="proj-block"><p>Product ad creatives and customer-review reposts for Urbantech's Lazada and Shopee listings.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/urbantech/April%2029_Static%20(4).png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -365,7 +376,7 @@
           <span class="proj-index">07 / 10 — Event graphics</span>
           <h2>Bay's Inn Surf &amp; Music Festival</h2>
           <div class="proj-block"><p>Event graphics for a surf and music festival in Baler, Aurora — trip schedules, sponsor call-outs, and social announcements.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/BAY_S%20INN%20SURF%20&amp;%20MUSIC%20FESTIVAL/BALER%20TRIP%20SCHEDULE%20-%20CUBAO.png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -385,17 +396,17 @@
           <span class="proj-index">09 / 10 — Wedding invitation</span>
           <h2>Jan Orville &amp; Novelyn</h2>
           <div class="proj-block"><p>A floral wedding invitation suite designed for Jan Orville and Novelyn's October wedding.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/Jan%20Orville%20&amp;%20Novelyn%20-%20Wedding%20Invitation/FRONT.png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
       <div class="proj-entry reveal" data-category="graphic-design">
-        <a href="assets/graphic-designs/Lilibeth_Retirement%20Party/11%20FULL%20INVITATION.png" target="_blank" rel="noopener" class="proj-media"><img src="assets/graphic-designs/covers/retirement.jpg" alt="Lilibeth's retirement party invitation" loading="lazy"></a>
+        <a href="assets/graphic-designs/Lilibeth_Retirement%20Party/11%20FULL%20INVITATION.png" target="_blank" rel="noopener" class="proj-media" data-gallery='["assets/graphic-designs/Lilibeth_Retirement%20Party/11%20FULL%20INVITATION.png"]'><img src="assets/graphic-designs/covers/retirement.jpg" alt="Lilibeth's retirement party invitation" loading="lazy"></a>
         <div class="proj-body">
           <span class="proj-index">10 / 10 — Event invitation</span>
           <h2>Lilibeth's Retirement Party</h2>
           <div class="proj-block"><p>An invitation designed to celebrate 38 years of teaching service.</p></div>
-          <div class="proj-links"><a href="assets/graphic-designs/Lilibeth_Retirement%20Party/11%20FULL%20INVITATION.png" target="_blank" rel="noopener" class="proj-btn ghost">View full size</a></div>
+          <div class="proj-links"><button type="button" class="proj-btn ghost gallery-open">View</button></div>
         </div>
       </div>
 
@@ -530,14 +541,29 @@
   (function lightbox(){
     const lb=document.getElementById('lightbox');
     const triggers=document.querySelectorAll('.proj-media[data-gallery]');
-    if(!lb||!triggers.length)return;
+    const openButtons=document.querySelectorAll('.gallery-open');
+    if(!lb||(!triggers.length&&!openButtons.length))return;
     const img=lb.querySelector('.lightbox-img');
     const prevBtn=lb.querySelector('.lightbox-prev');
     const nextBtn=lb.querySelector('.lightbox-next');
     const closeBtn=lb.querySelector('.lightbox-close');
     const countEl=lb.querySelector('.lightbox-count');
+    const thumbsEl=lb.querySelector('.lightbox-thumbs');
     let images=[],idx=0,lastFocus=null;
 
+    function buildThumbs(){
+      thumbsEl.innerHTML='';
+      if(images.length<2){thumbsEl.hidden=true;return}
+      thumbsEl.hidden=false;
+      images.forEach((src,i)=>{
+        const t=document.createElement('img');
+        t.src=src;
+        t.alt='';
+        t.loading='lazy';
+        t.addEventListener('click',()=>show(i));
+        thumbsEl.appendChild(t);
+      });
+    }
     function show(i){
       idx=(i+images.length)%images.length;
       img.src=images[idx];
@@ -545,11 +571,16 @@
       countEl.textContent=multi?(idx+1)+' / '+images.length:'';
       prevBtn.hidden=!multi;
       nextBtn.hidden=!multi;
+      Array.from(thumbsEl.children).forEach((t,i2)=>{
+        t.classList.toggle('active',i2===idx);
+        if(i2===idx)t.scrollIntoView({block:'nearest',inline:'center'});
+      });
     }
     function open(gallery,alt){
       images=gallery;
       img.alt=alt||'';
       lastFocus=document.activeElement;
+      buildThumbs();
       show(0);
       lb.hidden=false;
       document.body.style.overflow='hidden';
@@ -561,14 +592,28 @@
       img.src='';
       if(lastFocus&&lastFocus.focus)lastFocus.focus();
     }
+    function galleryFrom(el){
+      let gallery;
+      try{gallery=JSON.parse(el.dataset.gallery)}catch(err){return null}
+      return gallery&&gallery.length?gallery:null;
+    }
 
     triggers.forEach(el=>{
       el.addEventListener('click',e=>{
-        let gallery;
-        try{gallery=JSON.parse(el.dataset.gallery)}catch(err){return}
-        if(!gallery||!gallery.length)return;
+        const gallery=galleryFrom(el);
+        if(!gallery)return;
         e.preventDefault();
         const altSource=el.querySelector('img');
+        open(gallery,altSource?altSource.alt:'');
+      });
+    });
+    openButtons.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const media=btn.closest('.proj-entry')?.querySelector('.proj-media[data-gallery]');
+        if(!media)return;
+        const gallery=galleryFrom(media);
+        if(!gallery)return;
+        const altSource=media.querySelector('img');
         open(gallery,altSource?altSource.alt:'');
       });
     });
